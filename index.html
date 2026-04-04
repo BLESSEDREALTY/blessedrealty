@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLESSEDREALTY™ | Corporate Land & Luxury</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root { --gold: #D4AF37; --black: #0A0A0A; --white: #FFFFFF; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        body { background: var(--white); color: var(--black); padding-bottom: 80px; }
+        
+        nav { background: var(--black); padding: 20px; border-bottom: 2px solid var(--gold); text-align: center; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.4rem; letter-spacing: 4px; }
+
+        .hero { height: 50vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://unsplash.com'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--white); text-align: center; }
+        .hero h1 { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 10px; }
+
+        .filter-section { background: #fdfdfd; padding: 30px; display: flex; justify-content: center; gap: 15px; border-bottom: 1px solid #eee; }
+        .filter-btn { padding: 10px 25px; border: 1px solid #ccc; background: none; cursor: pointer; font-weight: 600; font-size: 0.75rem; }
+        .filter-btn.active { background: var(--black); color: var(--gold); }
+
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .card { border: 1px solid #eee; transition: 0.4s; background: white; position: relative; }
+        .card img { width: 100%; height: 280px; object-fit: cover; }
+        .tag { position: absolute; margin: 15px; background: var(--gold); color: black; padding: 4px 12px; font-weight: bold; font-size: 0.7rem; top: 0; }
+        .card-body { padding: 25px; }
+        .card-body h3 { font-family: 'Cinzel', serif; margin-bottom: 10px; font-size: 1.1rem; }
+        .price { display: block; font-size: 1.3rem; font-weight: 600; margin-top: 15px; color: var(--black); border-top: 1px solid #eee; padding-top: 15px; }
+        
+        .sticky-contact { position: fixed; bottom: 0; width: 100%; background: var(--black); display: flex; justify-content: space-around; align-items: center; padding: 15px; border-top: 2px solid var(--gold); z-index: 2000; flex-wrap: wrap; gap: 10px; }
+        .sticky-link { color: var(--white); text-decoration: none; font-weight: 600; font-size: 0.8rem; }
+        .sticky-link span { color: var(--gold); }
+        .whatsapp-pill { background: #25D366; color: white; padding: 8px 18px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.8rem; }
+
+        .hidden { display: none; }
+        footer { background: var(--black); color: #444; text-align: center; padding: 40px; font-size: 0.7rem; }
+    </style>
+</head>
+<body>
+
+    <nav><div class="logo">𝗕𝗟𝗘𝗦𝗦𝗘𝗗𝐑𝙴𝙰𝙻𝚃𝚈™</div></nav>
+
+    <section class="hero">
+        <h1>SECURE THE FUTURE</h1>
+        <p>Bespoke Land Assets & High-End Architecture</p>
+    </section>
+
+    <div class="filter-section">
+        <button class="filter-btn active" onclick="filterType('all', this)">ALL ASSETS</button>
+        <button class="filter-btn" onclick="filterType('land', this)">PRIME LAND</button>
+        <button class="filter-btn" onclick="filterType('house', this)">LUXURY HOUSES</button>
+    </div>
+
+    <div class="container">
+        <!-- 1. LAND -->
+        <div class="card land">
+            <div class="tag">LAND</div>
+            <img src="https://unsplash.com" alt="Land">
+            <div class="card-body">
+                <h3>Heritage Estate Phase 1</h3>
+                <p>📍 Ibeju-Lekki, Lagos</p>
+                <p>600sqm | Title: C of O | 100% Dry Land</p>
+                <span class="price">₦35,000,000</span>
+            </div>
+        </div>
+
+        <!-- 2. HOUSE -->
+        <div class="card house">
+            <div class="tag">HOUSE</div>
+            <img src="https://unsplash.com" alt="Duplex">
+            <div class="card-body">
+                <h3>The Onyx Duplex</h3>
+                <p>📍 Maitama, Abuja</p>
+                <p>5-Bedroom + Private Cinema & Smart Home</p>
+                <span class="price">₦450,000,000</span>
+            </div>
+        </div>
+
+        <!-- 3. LAND (DEMO) -->
+        <div class="card land">
+            <div class="tag">LAND</div>
+            <img src="https://unsplash.com" alt="Land">
+            <div class="card-body">
+                <h3>Vantage View Acres</h3>
+                <p>📍 Epe, Lagos State</p>
+                <p>Commercial/Residential Hub | Registered Survey</p>
+                <span class="price">₦12,500,000</span>
+            </div>
+        </div>
+
+        <!-- 4. HOUSE (DEMO) -->
+        <div class="card house">
+            <div class="tag">HOUSE</div>
+            <img src="https://unsplash.com" alt="Villa">
+            <div class="card-body">
+                <h3>The Zenith Terrace</h3>
+                <p>📍 Ikoyi, Lagos</p>
+                <p>Luxury Penthouse | Infinity Pool Access</p>
+                <span class="price">₦1,200,000,000</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="sticky-contact">
+        <a href="tel:+2349072978833" class="sticky-link"><span>CALL:</span> 0907 297 8833</a>
+        <a href="mailto:blessedrealtyinc.001@gmail.com" class="sticky-link"><span>EMAIL:</span> blessedrealtyinc.001@gmail.com</a>
+        <a href="https://wa.me" class="whatsapp-pill">WHATSAPP</a>
+    </div>
+
+    <footer>&copy; 2026 BLESSEDREALTY™ CORPORATE HOLDINGS. ALL RIGHTS RESERVED.</footer>
+
+    <script>
+        function filterType(type, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.card').forEach(card => {
+                if (type === 'all' || card.classList.contains(type)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
