@@ -13,17 +13,22 @@
         nav { background: var(--black); padding: 20px; border-bottom: 2px solid var(--gold); text-align: center; position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.4rem; letter-spacing: 4px; }
 
-        .hero { height: 50vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://unsplash.com'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--white); text-align: center; }
+        .hero { height: 40vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://unsplash.com'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; color: var(--white); text-align: center; }
         .hero h1 { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 10px; }
 
-        .filter-section { background: #fdfdfd; padding: 30px; display: flex; justify-content: center; gap: 15px; border-bottom: 1px solid #eee; }
-        .filter-btn { padding: 10px 25px; border: 1px solid #ccc; background: none; cursor: pointer; font-weight: 600; font-size: 0.75rem; }
-        .filter-btn.active { background: var(--black); color: var(--gold); }
+        /* --- SEARCH & FILTER SECTION --- */
+        .search-container { background: #fdfdfd; padding: 20px; text-align: center; border-bottom: 1px solid #eee; }
+        #locationSearch { padding: 12px; width: 80%; max-width: 400px; border: 2px solid var(--gold); border-radius: 4px; outline: none; margin-bottom: 15px; }
+        
+        .filter-section { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .filter-btn { padding: 10px 20px; border: 1px solid #ccc; background: none; cursor: pointer; font-weight: 600; font-size: 0.75rem; transition: 0.3s; }
+        .filter-btn.active { background: var(--black); color: var(--gold); border-color: var(--black); }
 
         .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
         .card { border: 1px solid #eee; transition: 0.4s; background: white; position: relative; }
-        .card img { width: 100%; height: 280px; object-fit: cover; }
-        .tag { position: absolute; margin: 15px; background: var(--gold); color: black; padding: 4px 12px; font-weight: bold; font-size: 0.7rem; top: 0; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 280px; object-fit: cover; background: #eee; }
+        .tag { position: absolute; margin: 15px; background: var(--gold); color: black; padding: 4px 12px; font-weight: bold; font-size: 0.7rem; top: 0; z-index: 10; }
         .card-body { padding: 25px; }
         .card-body h3 { font-family: 'Cinzel', serif; margin-bottom: 10px; font-size: 1.1rem; }
         .price { display: block; font-size: 1.3rem; font-weight: 600; margin-top: 15px; color: var(--black); border-top: 1px solid #eee; padding-top: 15px; }
@@ -33,8 +38,8 @@
         .sticky-link span { color: var(--gold); }
         .whatsapp-pill { background: #25D366; color: white; padding: 8px 18px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.8rem; }
 
-        .hidden { display: none; }
-        footer { background: var(--black); color: #444; text-align: center; padding: 40px; font-size: 0.7rem; }
+        .hidden { display: none !important; }
+        footer { background: var(--black); color: #666; text-align: center; padding: 40px; font-size: 0.7rem; }
     </style>
 </head>
 <body>
@@ -46,20 +51,23 @@
         <p>Bespoke Land Assets & High-End Architecture</p>
     </section>
 
-    <div class="filter-section">
-        <button class="filter-btn active" onclick="filterType('all', this)">ALL ASSETS</button>
-        <button class="filter-btn" onclick="filterType('land', this)">PRIME LAND</button>
-        <button class="filter-btn" onclick="filterType('house', this)">LUXURY HOUSES</button>
+    <div class="search-container">
+        <input type="text" id="locationSearch" placeholder="Search by Location (e.g. Lagos, Abuja)..." onkeyup="filterSearch()">
+        <div class="filter-section">
+            <button class="filter-btn active" onclick="filterType('all', this)">ALL ASSETS</button>
+            <button class="filter-btn" onclick="filterType('land', this)">PRIME LAND</button>
+            <button class="filter-btn" onclick="filterType('house', this)">LUXURY HOUSES</button>
+        </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="listings">
         <!-- 1. LAND -->
         <div class="card land">
             <div class="tag">LAND</div>
             <img src="https://unsplash.com" alt="Land">
             <div class="card-body">
                 <h3>Heritage Estate Phase 1</h3>
-                <p>📍 Ibeju-Lekki, Lagos</p>
+                <p class="loc">📍 Ibeju-Lekki, Lagos</p>
                 <p>600sqm | Title: C of O | 100% Dry Land</p>
                 <span class="price">₦35,000,000</span>
             </div>
@@ -71,31 +79,31 @@
             <img src="https://unsplash.com" alt="Duplex">
             <div class="card-body">
                 <h3>The Onyx Duplex</h3>
-                <p>📍 Maitama, Abuja</p>
+                <p class="loc">📍 Maitama, Abuja</p>
                 <p>5-Bedroom + Private Cinema & Smart Home</p>
                 <span class="price">₦450,000,000</span>
             </div>
         </div>
 
-        <!-- 3. LAND (DEMO) -->
+        <!-- 3. LAND -->
         <div class="card land">
             <div class="tag">LAND</div>
             <img src="https://unsplash.com" alt="Land">
             <div class="card-body">
                 <h3>Vantage View Acres</h3>
-                <p>📍 Epe, Lagos State</p>
+                <p class="loc">📍 Epe, Lagos State</p>
                 <p>Commercial/Residential Hub | Registered Survey</p>
                 <span class="price">₦12,500,000</span>
             </div>
         </div>
 
-        <!-- 4. HOUSE (DEMO) -->
+        <!-- 4. HOUSE -->
         <div class="card house">
             <div class="tag">HOUSE</div>
             <img src="https://unsplash.com" alt="Villa">
             <div class="card-body">
                 <h3>The Zenith Terrace</h3>
-                <p>📍 Ikoyi, Lagos</p>
+                <p class="loc">📍 Ikoyi, Lagos</p>
                 <p>Luxury Penthouse | Infinity Pool Access</p>
                 <span class="price">₦1,200,000,000</span>
             </div>
@@ -111,6 +119,7 @@
     <footer>&copy; 2026 BLESSEDREALTY™ CORPORATE HOLDINGS. ALL RIGHTS RESERVED.</footer>
 
     <script>
+        // Filter by Category (Land/House)
         function filterType(type, btn) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
@@ -122,7 +131,21 @@
                 }
             });
         }
+
+        // Filter by Search Text (Location)
+        function filterSearch() {
+            let input = document.getElementById('locationSearch').value.toLowerCase();
+            let cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                let locationText = card.querySelector('.loc').innerText.toLowerCase();
+                if (locationText.includes(input)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
     </script>
 </body>
 </html>
-
