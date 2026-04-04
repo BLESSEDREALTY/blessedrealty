@@ -2,139 +2,185 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLESSEDREALTY™ | AI Futuristic Luxury Real Estate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BLESSEDREALTY™ | AI Futuristic Luxury</title>
     
+    <!-- Premium Assets -->
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cloudflare.com">
 
     <style>
         :root { 
             --gold: #C5A059; --black: #0A0A0A; --white: #FFFFFF; 
-            --soft-bg: #F8F9FA; --card-bg: #FFFFFF; --text: #0A0A0A;
-            --input-bg: #FFFFFF; --border: #EEEEEE;
+            --bg: #FDFDFD; --card: #FFFFFF; --text: #0A0A0A; --border: #EEEEEE;
         }
 
         [data-theme="dark"] {
-            --soft-bg: #0A0A0A; --card-bg: #161616; --text: #FFFFFF;
-            --input-bg: #000000; --border: #333333;
+            --bg: #050505; --card: #111111; --text: #FFFFFF; --border: #222222;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; transition: background 0.3s, color 0.3s; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; transition: 0.3s ease; }
         
-        body { min-height: 100vh; width: 100%; background: var(--soft-bg); color: var(--text); overflow-x: hidden; display: flex; flex-direction: column; }
+        html, body { min-height: 100vh; background: var(--bg); color: var(--text); display: flex; flex-direction: column; overflow-x: hidden; }
 
         /* --- NAVIGATION --- */
-        nav { background: var(--black); padding: 15px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 2000; border-bottom: 3px solid var(--gold); }
-        .logo { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.2rem; letter-spacing: 3px; font-weight: bold; }
-        .nav-icons { display: flex; gap: 20px; align-items: center; }
-        .theme-toggle, .menu-btn { color: var(--gold); font-size: 1.5rem; cursor: pointer; background: none; border: none; }
+        nav { 
+            background: #000; padding: 15px 5%; display: flex; 
+            justify-content: space-between; align-items: center; 
+            position: sticky; top: 0; z-index: 3000; border-bottom: 2px solid var(--gold);
+        }
+        .brand { font-family: 'Cinzel', serif; color: var(--gold); display: flex; align-items: baseline; pointer-events: none; }
+        .brand .main { font-size: 1.3rem; letter-spacing: 3px; font-weight: 800; }
+        .brand .sub { font-size: 0.75rem; letter-spacing: 2px; margin-left: 5px; font-weight: 400; }
 
-        /* --- SIDE MENU --- */
-        .side-menu { position: fixed; top: 0; left: -100%; width: 350px; height: 100%; background: var(--black); color: white; transition: 0.5s; z-index: 3000; padding: 60px 30px; overflow-y: auto; border-right: 3px solid var(--gold); }
-        .side-menu.active { left: 0; }
-        .close-btn { position: absolute; top: 20px; right: 25px; color: var(--gold); font-size: 2rem; cursor: pointer; }
+        .nav-tools { display: flex; gap: 15px; }
+        .nav-btn { color: var(--gold); font-size: 1.4rem; cursor: pointer; background: none; border: none; outline: none; }
 
-        .about-card { background: #1A1A1A; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid var(--gold); }
-        .about-card h4 { color: var(--gold); font-family: 'Cinzel', serif; margin-bottom: 10px; font-size: 0.9rem; }
-        
-        .vision-box { background: #111; border: 1px solid #333; border-radius: 8px; margin-top: 20px; cursor: pointer; }
-        .vision-header { padding: 15px; color: var(--gold); font-weight: bold; display: flex; justify-content: space-between; font-family: 'Cinzel'; }
-        .vision-content { max-height: 0; overflow: hidden; transition: 0.4s; padding: 0 15px; font-size: 0.8rem; color: #999; }
-        .vision-box.active .vision-content { max-height: 200px; padding: 0 15px 15px 15px; }
+        /* --- HERO --- */
+        .hero { 
+            height: 40vh; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+            url('https://unsplash.com') center/cover;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 20px;
+        }
+        .hero h1 { font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--gold); letter-spacing: 4px; margin-bottom: 5px; }
+        .hero p { font-size: 0.75rem; letter-spacing: 2px; opacity: 0.8; text-transform: uppercase; }
 
-        details { margin-bottom: 12px; background: #080808; border-radius: 5px; border: 1px solid #222; }
-        summary { padding: 12px; cursor: pointer; font-size: 0.85rem; color: var(--gold); font-weight: 600; list-style: none; }
-        .corp-form { padding: 15px; background: #000; }
-        .corp-form input, .corp-form textarea { width: 100%; padding: 10px; margin-bottom: 10px; background: #111; border: 1px solid #333; color: white; border-radius: 4px; font-size: 0.8rem; }
-        .agreement-box { font-size: 0.65rem; color: #777; background: #111; padding: 10px; height: 100px; overflow-y: scroll; margin-bottom: 15px; border: 1px solid #222; }
-        .submit-btn { width: 100%; background: var(--gold); color: black; border: none; padding: 12px; font-weight: bold; cursor: pointer; border-radius: 4px; }
+        /* --- FILTER SYSTEM --- */
+        .filter-zone { background: var(--card); padding: 25px 5%; border-bottom: 1px solid var(--border); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        #propertySearch { 
+            width: 100%; max-width: 500px; padding: 14px 20px; border-radius: 8px; 
+            border: 1px solid var(--gold); margin: 0 auto 20px; display: block; outline: none; background: var(--bg); color: var(--text);
+        }
+        .range-wrap { text-align: center; }
+        .price-slider { width: 100%; max-width: 400px; accent-color: var(--gold); cursor: pointer; }
 
-        /* --- HERO & CONTENT --- */
-        .hero { width: 100%; height: 50vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://unsplash.com') center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 20px; }
-        .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 6vw, 3.5rem); color: var(--gold); margin-bottom: 10px; letter-spacing: 5px; }
-        #propertySearch { width: 90%; max-width: 500px; padding: 15px 25px; border-radius: 50px; border: 2px solid var(--gold); background: var(--pure-white); color: #000; font-size: 1rem; outline: none; margin-top: 20px; }
+        /* --- PROPERTY GRID --- */
+        .grid { 
+            flex: 1; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; padding: 40px 5%; max-width: 1400px; margin: 0 auto; width: 100%;
+        }
+        .card { background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); position: relative; }
+        .card:hover { transform: translateY(-8px); border-color: var(--gold); }
+        .card img { width: 100%; height: 260px; object-fit: cover; background: #222; }
+        .tag { position: absolute; top: 15px; left: 15px; background: var(--gold); color: black; padding: 4px 12px; font-size: 0.65rem; font-weight: 800; border-radius: 3px; }
+        .card-body { padding: 25px; }
+        .card-body h3 { font-family: 'Cinzel', serif; font-size: 1.1rem; margin-bottom: 8px; color: var(--gold); }
+        .price-tag { font-size: 1.4rem; font-weight: 700; color: var(--text); margin-top: 15px; display: block; border-top: 1px solid var(--border); padding-top: 15px; }
 
-        .price-filter-bar { background: var(--card-bg); padding: 25px; border-bottom: 1px solid var(--border); text-align: center; }
-        .price-slider { width: 80%; max-width: 400px; accent-color: var(--gold); cursor: pointer; }
+        /* --- CORPORATE SIDE MENU --- */
+        .side-menu { 
+            position: fixed; top: 0; left: -100%; width: 85%; max-width: 350px; height: 100%; 
+            background: #000; z-index: 4000; transition: 0.5s ease; padding: 50px 25px; overflow-y: auto; color: white;
+        }
+        .side-menu.active { left: 0; border-right: 2px solid var(--gold); }
+        .close-btn { float: right; font-size: 2rem; color: var(--gold); cursor: pointer; }
 
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; flex-grow: 1; }
-        .card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid var(--border); position: relative; }
-        .card img { width: 100%; height: 260px; object-fit: cover; }
-        .tag { position: absolute; top: 15px; left: 15px; background: var(--gold); color: black; padding: 5px 12px; font-weight: 800; font-size: 0.65rem; border-radius: 3px; }
-        .card-body { padding: 20px; }
-        .price-tag { display: block; font-size: 1.3rem; font-weight: 700; color: var(--text); border-top: 1px solid var(--border); padding-top: 15px; margin-top: 15px; }
+        .menu-link { display: block; padding: 15px 0; color: white; text-decoration: none; border-bottom: 1px solid #222; font-size: 0.8rem; letter-spacing: 1px; }
+        .agreement { background: #111; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 3px solid var(--gold); }
+        .agreement h4 { font-size: 0.75rem; color: var(--gold); margin-bottom: 8px; font-family: 'Cinzel'; }
+        .agreement p { font-size: 0.65rem; color: #999; line-height: 1.6; }
 
-        .whatsapp-float { position: fixed; bottom: 25px; right: 25px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; text-align: center; font-size: 32px; line-height: 60px; z-index: 5000; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        /* --- WHATSAPP CIRCLE --- */
+        .wa-float { 
+            position: fixed; bottom: 30px; right: 25px; background: #25D366; 
+            width: 55px; height: 55px; border-radius: 50%; display: flex; 
+            justify-content: center; align-items: center; color: white; 
+            font-size: 28px; z-index: 5000; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
 
-        footer { background: var(--black); color: #777; text-align: center; padding: 60px 5% 100px; width: 100%; border-top: 4px solid var(--gold); margin-top: auto; }
+        /* --- FOOTER --- */
+        footer { background: #000; color: #444; padding: 80px 5% 120px; text-align: center; border-top: 5px solid var(--gold); margin-top: auto; }
         footer b { color: var(--gold); }
     </style>
 </head>
 <body>
 
     <nav>
-        <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-        <div class="logo">𝗕𝗟𝗘𝗦𝗦𝗘𝗗𝐑𝙴𝙰𝗟𝚃𝗬™</div>
-        <div class="nav-icons">
-            <button class="theme-toggle" onclick="toggleTheme()"><i id="themeIcon" class="fas fa-moon"></i></button>
+        <button class="nav-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+        <div class="brand">
+            <span class="main">BLESSED</span>
+            <span class="sub">REALTY<sup>™</sup></span>
+        </div>
+        <div class="nav-tools">
+            <button class="nav-btn" onclick="toggleTheme()"><i id="themeIcon" class="fas fa-moon"></i></button>
         </div>
     </nav>
 
+    <!-- MASTER CORPORATE MENU -->
     <div id="sideMenu" class="side-menu">
         <span class="close-btn" onclick="toggleMenu()">&times;</span>
-        <div class="about-card">
+        <h2 style="color:var(--gold); font-family:'Cinzel'; margin-bottom:25px; letter-spacing:2px;">CORPORATE</h2>
+        
+        <div class="agreement">
             <h4>ABOUT BLESSEDREALTY™</h4>
-            <p>Architects of Nigeria's digital future. Merging AI with high-end architecture to build a futuristic real estate empire. We protect interests via 60/40 interest logic.</p>
+            <p>Architects of Nigeria's digital and physical future. Merging AI with high-end architecture to build a futuristic luxurious real estate empire. 60/40 interest logic applies.</p>
         </div>
-        <div class="vision-box" id="vBox" onclick="toggleVision()">
-            <div class="vision-header"><span>OUR VISION</span><i class="fas fa-plus" id="vIcon"></i></div>
-            <div class="vision-content">To build the biggest AI Futuristic and luxurious Real Estate the world has ever seen, in Nigeria.</div>
+
+        <a href="#" class="menu-link" onclick="alert('Our Vision: To build the biggest AI Futuristic and luxurious Real Estate empire in Nigeria.')">OUR VISION (TAP TO VIEW)</a>
+        
+        <div class="agreement">
+            <h4>HIRING & SOURCING</h4>
+            <p>16% Total Commission (8% Finder / 8% Sales). No base salary for field agents. BLESSEDREALTY™ maintains 60% overall governing control.</p>
         </div>
-        <details><summary>HIRING / CAREERS</summary><div class="corp-form"><form action="https://formspree.io" method="POST"><input type="text" name="Name" placeholder="Full Name" required><input type="text" name="Exp" placeholder="Experience" required><div class="agreement-box"><b>Terms:</b> 16% Total Commission (8% Finder / 8% Sale). No base salary for field roles.</div><button type="submit" class="submit-btn">APPLY</button></form></div></details>
-        <details><summary>INVESTOR PARTNERSHIP</summary><div class="corp-form"><form action="https://formspree.io" method="POST"><input type="text" name="Inv" placeholder="Entity Name" required><input type="text" name="Src" placeholder="Source of Funding" required><textarea name="Msg" placeholder="Reason" required></textarea><div class="agreement-box"><b>Terms:</b> 60/40 Profit Logic. Profits tied to investment value only.</div><button type="submit" class="submit-btn">SUBMIT</button></form></div></details>
-        <a href="https://wa.me" style="display:block; color:var(--gold); text-decoration:none; padding:15px 0; font-weight:bold; border-top:1px solid #222; margin-top:20px;">DIRECT SUPPORT</a>
+
+        <div class="agreement">
+            <h4>INVESTOR PARTNERSHIP</h4>
+            <p>60% Control for BLESSEDREALTY™ | 40% Partner Equity. Profits tied strictly to verified investment value.</p>
+        </div>
+
+        <a href="https://wa.me" class="menu-link" style="color:var(--gold); font-weight:bold;">DIRECT WHATSAPP SUPPORT</a>
     </div>
 
+    <!-- MAIN BODY -->
     <section class="hero">
         <h1>SECURE THE FUTURE</h1>
-        <p>AI Architecture • Bespoke Land Assets</p>
-        <input type="text" id="propertySearch" placeholder="Search by location..." onkeyup="applyFilters()">
+        <p>AI ARCHITECTURE • BESPOKE LAND ASSETS</p>
     </section>
 
-    <div class="price-filter-bar">
-        <input type="range" id="priceRange" min="2000000" max="2000000000" step="1000000" value="2000000000" class="price-slider" oninput="applyFilters()">
-        <span class="price-label">Max Budget: <span id="priceVal" style="color:var(--gold)">₦2,000,000,000</span></span>
+    <div class="filter-zone">
+        <input type="text" id="propertySearch" placeholder="Search locations (Lekki, Abuja, Epe)..." onkeyup="applyFilter()">
+        <div class="range-wrap">
+            <input type="range" id="priceRange" min="2000000" max="2000000000" step="1000000" value="2000000000" class="price-slider" oninput="applyFilter()">
+            <span style="display:block; margin-top:10px; font-size:0.85rem;">Max Budget: <b id="priceVal" style="color:var(--gold)">₦2,000,000,000</b></span>
+        </div>
     </div>
 
-    <div class="container" id="propertyGrid">
-        <div class="card" data-price="2500000" data-tags="Epe Land"><div class="tag">LAND</div><img src="https://unsplash.com" alt="Land"><div class="card-body"><h3>Green Acres</h3><p>📍 Epe, Lagos</p><span class="price-tag">₦2,500,000</span></div></div>
-        <div class="card" data-price="450000000" data-tags="Maitama House"><div class="tag">LUXURY</div><img src="https://unsplash.com" alt="House"><div class="card-body"><h3>Onyx Duplex</h3><p>📍 Maitama, Abuja</p><span class="price-tag">₦450,000,000</span></div></div>
+    <div class="grid" id="pGrid">
+        <div class="card" data-price="2500000" data-tags="Epe Lagos Green Acres">
+            <div class="tag">PRIME LAND</div>
+            <img src="https://unsplash.com" alt="Epe">
+            <div class="card-body">
+                <h3>Green Acres</h3>
+                <p>📍 Epe, Lagos State</p>
+                <span class="price-tag">₦2,500,000</span>
+            </div>
+        </div>
+        <div class="card" data-price="450000000" data-tags="Maitama Abuja Onyx">
+            <div class="tag">AI LUXURY</div>
+            <img src="https://unsplash.com" alt="Duplex">
+            <div class="card-body">
+                <h3>Onyx Duplex</h3>
+                <p>📍 Maitama, Abuja</p>
+                <span class="price-tag">₦450,000,000</span>
+            </div>
+        </div>
     </div>
 
-    <a href="https://wa.me" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <footer>
         <p>&copy; 2026 <b>BLESSEDREALTY™</b>. ALL RIGHTS RESERVED.</p>
-        <p style="margin-top:20px; opacity:0.6; font-size:0.7rem;">60% Governing Interest | 40% Partner Equity. Commission 16%.</p>
+        <p style="font-size:0.6rem; opacity:0.4; margin-top:15px; line-height:1.8;">60% Governing Interest | 40% Partner Equity. <br>Commission strictly 16% (8/8).</p>
     </footer>
 
     <script>
         function toggleMenu() { document.getElementById('sideMenu').classList.toggle('active'); }
-        function toggleVision() { 
-            const b = document.getElementById('vBox'); b.classList.toggle('active'); 
-            const i = document.getElementById('vIcon'); i.classList.toggle('fa-plus'); i.classList.toggle('fa-minus');
-        }
         function toggleTheme() {
-            const b = document.body;
-            const i = document.getElementById('themeIcon');
-            if (b.getAttribute('data-theme') === 'dark') {
-                b.removeAttribute('data-theme'); i.classList.replace('fa-sun', 'fa-moon');
-            } else {
-                b.setAttribute('data-theme', 'dark'); i.classList.replace('fa-moon', 'fa-sun');
-            }
+            const b = document.body; const i = document.getElementById('themeIcon');
+            if(b.getAttribute('data-theme')==='dark'){ b.removeAttribute('data-theme'); i.className='fas fa-moon'; }
+            else { b.setAttribute('data-theme', 'dark'); i.className='fas fa-sun'; }
         }
-        function applyFilters() {
+        function applyFilter() {
             let s = document.getElementById('propertySearch').value.toLowerCase();
             let m = parseInt(document.getElementById('priceRange').value);
             document.getElementById('priceVal').innerText = "₦" + m.toLocaleString();
@@ -146,5 +192,4 @@
         }
     </script>
 </body>
-                                           </html>
-    
+</html>
