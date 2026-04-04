@@ -2,192 +2,146 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BLESSEDREALTY™ | AI Futuristic Luxury</title>
-    
-    <!-- Premium Assets -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLESSEDREALTY™ | Land & Property Holdings</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cloudflare.com">
-
     <style>
-        :root { 
-            --gold: #C5A059; --black: #0A0A0A; --white: #FFFFFF; 
-            --bg: #FDFDFD; --card: #FFFFFF; --text: #0A0A0A; --border: #EEEEEE;
-        }
-
-        [data-theme="dark"] {
-            --bg: #050505; --card: #111111; --text: #FFFFFF; --border: #222222;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; transition: 0.3s ease; }
+        :root { --gold: #C5A059; --black: #0A0A0A; --grey: #1A1A1A; --white: #FFFFFF; --soft-white: #F8F9FA; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        body { background: var(--soft-white); color: var(--black); overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
         
-        html, body { min-height: 100vh; background: var(--bg); color: var(--text); display: flex; flex-direction: column; overflow-x: hidden; }
+        nav { background: var(--black); padding: 15px 6%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 2000; border-bottom: 3px solid var(--gold); }
+        .logo { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.4rem; letter-spacing: 4px; font-weight: bold; }
+        .menu-btn { color: var(--gold); font-size: 1.8rem; cursor: pointer; background: none; border: none; }
 
-        /* --- NAVIGATION --- */
-        nav { 
-            background: #000; padding: 15px 5%; display: flex; 
-            justify-content: space-between; align-items: center; 
-            position: sticky; top: 0; z-index: 3000; border-bottom: 2px solid var(--gold);
-        }
-        .brand { font-family: 'Cinzel', serif; color: var(--gold); display: flex; align-items: baseline; pointer-events: none; }
-        .brand .main { font-size: 1.3rem; letter-spacing: 3px; font-weight: 800; }
-        .brand .sub { font-size: 0.75rem; letter-spacing: 2px; margin-left: 5px; font-weight: 400; }
+        .side-menu { position: fixed; top: 0; left: -100%; width: 350px; height: 100%; background: var(--black); color: var(--white); transition: 0.5s ease; z-index: 3000; padding: 60px 30px; overflow-y: auto; border-right: 3px solid var(--gold); }
+        .side-menu.active { left: 0; }
+        .close-btn { position: absolute; top: 20px; right: 25px; color: var(--gold); font-size: 2.2rem; cursor: pointer; }
 
-        .nav-tools { display: flex; gap: 15px; }
-        .nav-btn { color: var(--gold); font-size: 1.4rem; cursor: pointer; background: none; border: none; outline: none; }
+        .filter-box { background: #111; padding: 20px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #333; }
+        .price-slider { width: 100%; accent-color: var(--gold); cursor: pointer; }
+        .price-display { color: var(--white); font-weight: bold; margin-top: 15px; font-size: 0.9rem; display: block; }
 
-        /* --- HERO --- */
-        .hero { 
-            height: 40vh; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-            url('https://unsplash.com') center/cover;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 20px;
-        }
-        .hero h1 { font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--gold); letter-spacing: 4px; margin-bottom: 5px; }
-        .hero p { font-size: 0.75rem; letter-spacing: 2px; opacity: 0.8; text-transform: uppercase; }
+        .vision-box { background: #111; border: 1px solid #333; border-radius: 8px; margin-top: 20px; cursor: pointer; }
+        .vision-header { padding: 15px; color: var(--gold); font-family: 'Cinzel', serif; display: flex; justify-content: space-between; font-weight: bold; font-size: 0.8rem; }
+        .vision-content { max-height: 0; overflow: hidden; transition: 0.4s; padding: 0 15px; font-size: 0.75rem; color: #999; line-height: 1.6; }
+        .vision-box.active .vision-content { max-height: 200px; padding-bottom: 15px; }
 
-        /* --- FILTER SYSTEM --- */
-        .filter-zone { background: var(--card); padding: 25px 5%; border-bottom: 1px solid var(--border); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        #propertySearch { 
-            width: 100%; max-width: 500px; padding: 14px 20px; border-radius: 8px; 
-            border: 1px solid var(--gold); margin: 0 auto 20px; display: block; outline: none; background: var(--bg); color: var(--text);
-        }
-        .range-wrap { text-align: center; }
-        .price-slider { width: 100%; max-width: 400px; accent-color: var(--gold); cursor: pointer; }
+        details { margin-bottom: 12px; background: #080808; border-radius: 5px; border: 1px solid #222; }
+        summary { padding: 12px; cursor: pointer; font-size: 0.85rem; color: var(--gold); font-weight: 600; list-style: none; }
+        .corp-form { padding: 15px; background: #000; }
+        .corp-form input, .corp-form textarea, .corp-form select { width: 100%; padding: 10px; margin-bottom: 10px; background: #111; border: 1px solid #333; color: white; border-radius: 4px; font-size: 0.8rem; }
+        .submit-btn { width: 100%; background: var(--gold); color: black; border: none; padding: 12px; font-weight: bold; cursor: pointer; border-radius: 4px; text-transform: uppercase; }
 
-        /* --- PROPERTY GRID --- */
-        .grid { 
-            flex: 1; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; padding: 40px 5%; max-width: 1400px; margin: 0 auto; width: 100%;
-        }
-        .card { background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); position: relative; }
-        .card:hover { transform: translateY(-8px); border-color: var(--gold); }
-        .card img { width: 100%; height: 260px; object-fit: cover; background: #222; }
-        .tag { position: absolute; top: 15px; left: 15px; background: var(--gold); color: black; padding: 4px 12px; font-size: 0.65rem; font-weight: 800; border-radius: 3px; }
-        .card-body { padding: 25px; }
-        .card-body h3 { font-family: 'Cinzel', serif; font-size: 1.1rem; margin-bottom: 8px; color: var(--gold); }
-        .price-tag { font-size: 1.4rem; font-weight: 700; color: var(--text); margin-top: 15px; display: block; border-top: 1px solid var(--border); padding-top: 15px; }
+        .hero { width: 100%; height: 50vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://unsplash.com') center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white); padding: 20px; }
+        .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 6vw, 3.5rem); color: var(--gold); letter-spacing: 7px; margin-bottom: 10px; }
+        .hero p { font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; color: #ddd; }
+        #propertySearch { width: 90%; max-width: 550px; padding: 18px 35px; border-radius: 60px; border: 2px solid var(--gold); background: var(--white); color: var(--black); font-size: 1.1rem; outline: none; margin-top: 20px; }
 
-        /* --- CORPORATE SIDE MENU --- */
-        .side-menu { 
-            position: fixed; top: 0; left: -100%; width: 85%; max-width: 350px; height: 100%; 
-            background: #000; z-index: 4000; transition: 0.5s ease; padding: 50px 25px; overflow-y: auto; color: white;
-        }
-        .side-menu.active { left: 0; border-right: 2px solid var(--gold); }
-        .close-btn { float: right; font-size: 2rem; color: var(--gold); cursor: pointer; }
+        .container { max-width: 1300px; margin: 40px auto; padding: 0 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; flex-grow: 1; }
+        .card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 12px 35px rgba(0,0,0,0.06); transition: 0.4s; border: 1px solid #eee; position: relative; }
+        .card img { width: 100%; height: 300px; object-fit: cover; }
+        .tag { position: absolute; top: 20px; left: 20px; background: var(--gold); color: black; padding: 7px 18px; font-weight: 800; font-size: 0.75rem; border-radius: 4px; z-index: 10; }
+        .card-body { padding: 30px; }
+        .price-tag { display: block; font-size: 1.6rem; font-weight: 700; color: var(--black); border-top: 2px solid #f0f0f0; padding-top: 20px; margin-top: 20px; }
 
-        .menu-link { display: block; padding: 15px 0; color: white; text-decoration: none; border-bottom: 1px solid #222; font-size: 0.8rem; letter-spacing: 1px; }
-        .agreement { background: #111; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 3px solid var(--gold); }
-        .agreement h4 { font-size: 0.75rem; color: var(--gold); margin-bottom: 8px; font-family: 'Cinzel'; }
-        .agreement p { font-size: 0.65rem; color: #999; line-height: 1.6; }
+        .whatsapp-float { position: fixed; bottom: 35px; right: 35px; background-color: #25d366; color: white; width: 65px; height: 65px; border-radius: 50%; text-align: center; line-height: 65px; font-size: 35px; z-index: 5000; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 
-        /* --- WHATSAPP CIRCLE --- */
-        .wa-float { 
-            position: fixed; bottom: 30px; right: 25px; background: #25D366; 
-            width: 55px; height: 55px; border-radius: 50%; display: flex; 
-            justify-content: center; align-items: center; color: white; 
-            font-size: 28px; z-index: 5000; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
-        /* --- FOOTER --- */
-        footer { background: #000; color: #444; padding: 80px 5% 120px; text-align: center; border-top: 5px solid var(--gold); margin-top: auto; }
+        footer { background: var(--black); color: #888; text-align: center; padding: 80px 6%; width: 100%; border-top: 5px solid var(--gold); }
         footer b { color: var(--gold); }
     </style>
 </head>
 <body>
-
     <nav>
-        <button class="nav-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-        <div class="brand">
-            <span class="main">BLESSED</span>
-            <span class="sub">REALTY<sup>™</sup></span>
-        </div>
-        <div class="nav-tools">
-            <button class="nav-btn" onclick="toggleTheme()"><i id="themeIcon" class="fas fa-moon"></i></button>
-        </div>
+        <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+        <div class="logo">𝗕𝗟𝗘𝗦𝗦𝗘𝗗𝐑𝙴𝙰𝗟𝚃𝗬™</div>
+        <div style="width: 40px;"></div>
     </nav>
 
-    <!-- MASTER CORPORATE MENU -->
     <div id="sideMenu" class="side-menu">
         <span class="close-btn" onclick="toggleMenu()">&times;</span>
-        <h2 style="color:var(--gold); font-family:'Cinzel'; margin-bottom:25px; letter-spacing:2px;">CORPORATE</h2>
-        
-        <div class="agreement">
-            <h4>ABOUT BLESSEDREALTY™</h4>
-            <p>Architects of Nigeria's digital and physical future. Merging AI with high-end architecture to build a futuristic luxurious real estate empire. 60/40 interest logic applies.</p>
+        <div style="background: #111; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 3px solid var(--gold);">
+            <h4 style="color:var(--gold); font-family:Cinzel; font-size: 0.9rem;">ABOUT BLESSEDREALTY</h4>
+            <p style="font-size:0.75rem; color:#ccc;">Experts in Land Acquisition, Property Flips, and Strategic Development. We maintain 60% controlling interest governance.</p>
         </div>
 
-        <a href="#" class="menu-link" onclick="alert('Our Vision: To build the biggest AI Futuristic and luxurious Real Estate empire in Nigeria.')">OUR VISION (TAP TO VIEW)</a>
-        
-        <div class="agreement">
-            <h4>HIRING & SOURCING</h4>
-            <p>16% Total Commission (8% Finder / 8% Sales). No base salary for field agents. BLESSEDREALTY™ maintains 60% overall governing control.</p>
+        <div class="vision-box" id="visionBox" onclick="toggleVision()">
+            <div class="vision-header"><span>OUR VISION</span><i class="fas fa-plus" id="visionIcon"></i></div>
+            <div class="vision-content">To build the biggest AI Futuristic and luxurious Real Estate empire the world has ever seen, in Nigeria.</div>
         </div>
 
-        <div class="agreement">
-            <h4>INVESTOR PARTNERSHIP</h4>
-            <p>60% Control for BLESSEDREALTY™ | 40% Partner Equity. Profits tied strictly to verified investment value.</p>
+        <div class="filter-box" style="margin-top: 20px;">
+            <label style="color:var(--gold); font-size:0.7rem; font-weight:bold; display:block; margin-bottom:10px;">MAX BUDGET (₦)</label>
+            <input type="range" id="priceRange" min="1500000" max="3000000000" step="5000000" value="3000000000" class="price-slider" oninput="applyFilters()">
+            <span class="price-display">Max: <span id="priceValue" style="color:var(--gold)">₦3,000,000,000</span></span>
         </div>
 
-        <a href="https://wa.me" class="menu-link" style="color:var(--gold); font-weight:bold;">DIRECT WHATSAPP SUPPORT</a>
+        <details><summary>HIRING / CAREERS</summary><div class="corp-form">
+            <form action="https://formspree.io" method="POST">
+                <input type="text" name="Name" placeholder="Full Legal Name" required>
+                <input type="text" name="Exp" placeholder="Experience" required>
+                <p style="font-size:0.6rem; color:#666; margin-bottom:10px;">16% Total Commission (8% Finder/8% Sale). No base salary for agents.</p>
+                <button type="submit" class="submit-btn">APPLY</button>
+            </form>
+        </div></details>
+
+        <details><summary>SOURCING PARTNERS</summary><div class="corp-form">
+            <form action="https://formspree.io" method="POST">
+                <input type="text" name="Name" placeholder="Full Name" required>
+                <input type="text" name="Details" placeholder="Experience Details" required>
+                <button type="submit" class="submit-btn">JOIN</button>
+            </form>
+        </div></details>
+
+        <details><summary>INVESTOR PARTNERSHIP</summary><div class="corp-form">
+            <form action="https://formspree.io" method="POST">
+                <input type="text" name="Investor" placeholder="Full Entity Name" required>
+                <input type="text" name="Source" placeholder="Verified Source of Funding" required>
+                <select name="FoundUs" required><option value="" disabled selected>How did you find us?</option><option>Social Media</option><option>Referral</option><option>Search</option></select>
+                <textarea name="Reason" placeholder="Reason for Interest" required></textarea>
+                <p style="font-size:0.6rem; color:#666; margin-bottom:10px;">60% Corporate Interest | Profits tied to investment only.</p>
+                <button type="submit" class="submit-btn">SUBMIT</button>
+            </form>
+        </div></details>
+
+        <a href="https://wa.me" style="display:block; color:var(--gold); padding:20px 0; font-weight:bold; border-top:1px solid #222; text-decoration:none;">CUSTOMER CARE</a>
     </div>
 
-    <!-- MAIN BODY -->
     <section class="hero">
         <h1>SECURE THE FUTURE</h1>
-        <p>AI ARCHITECTURE • BESPOKE LAND ASSETS</p>
+        <p>Land Acquisition • Land Flip • Property Flip • Development</p>
+        <input type="text" id="propertySearch" placeholder="Search (Lekki, Abuja, Epe)..." onkeyup="applyFilters()">
     </section>
 
-    <div class="filter-zone">
-        <input type="text" id="propertySearch" placeholder="Search locations (Lekki, Abuja, Epe)..." onkeyup="applyFilter()">
-        <div class="range-wrap">
-            <input type="range" id="priceRange" min="2000000" max="2000000000" step="1000000" value="2000000000" class="price-slider" oninput="applyFilter()">
-            <span style="display:block; margin-top:10px; font-size:0.85rem;">Max Budget: <b id="priceVal" style="color:var(--gold)">₦2,000,000,000</b></span>
-        </div>
+    <div class="container" id="propertyGrid">
+        <div class="card" data-price="35000000" data-tags="Ibeju-Lekki Lagos Heritage"><div class="tag">LAND SALE</div><img src="https://unsplash.com" alt="L1"><div class="card-body"><h3>Heritage Estate Ph 1</h3><p>📍 Ibeju-Lekki, Lagos</p><span class="price-tag">₦35,000,000</span></div></div>
+        <div class="card" data-price="450000000" data-tags="Maitama Abuja Onyx"><div class="tag">PROPERTY FLIP</div><img src="https://unsplash.com" alt="H1"><div class="card-body"><h3>The Onyx Duplex</h3><p>📍 Maitama, Abuja</p><span class="price-tag">₦450,000,000</span></div></div>
+        <div class="card" data-price="12500000" data-tags="Epe Lagos Vantage"><div class="tag">LAND FLIP</div><img src="https://unsplash.com" alt="L2"><div class="card-body"><h3>Vantage View Acres</h3><p>📍 Epe, Lagos State</p><span class="price-tag">₦12,500,000</span></div></div>
+        <div class="card" data-price="1200000000" data-tags="Ikoyi Lagos Zenith"><div class="tag">RESIDENTIAL SALE</div><img src="https://unsplash.com" alt="H2"><div class="card-body"><h3>The Zenith Terrace</h3><p>📍 Ikoyi, Lagos</p><span class="price-tag">₦1,200,000,000</span></div></div>
     </div>
 
-    <div class="grid" id="pGrid">
-        <div class="card" data-price="2500000" data-tags="Epe Lagos Green Acres">
-            <div class="tag">PRIME LAND</div>
-            <img src="https://unsplash.com" alt="Epe">
-            <div class="card-body">
-                <h3>Green Acres</h3>
-                <p>📍 Epe, Lagos State</p>
-                <span class="price-tag">₦2,500,000</span>
-            </div>
-        </div>
-        <div class="card" data-price="450000000" data-tags="Maitama Abuja Onyx">
-            <div class="tag">AI LUXURY</div>
-            <img src="https://unsplash.com" alt="Duplex">
-            <div class="card-body">
-                <h3>Onyx Duplex</h3>
-                <p>📍 Maitama, Abuja</p>
-                <span class="price-tag">₦450,000,000</span>
-            </div>
-        </div>
-    </div>
-
-    <a href="https://wa.me" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <footer>
-        <p>&copy; 2026 <b>BLESSEDREALTY™</b>. ALL RIGHTS RESERVED.</p>
-        <p style="font-size:0.6rem; opacity:0.4; margin-top:15px; line-height:1.8;">60% Governing Interest | 40% Partner Equity. <br>Commission strictly 16% (8/8).</p>
+        <p>&copy; 2026 <b>BLESSEDREALTY™ CORPORATE HOLDINGS.</b> ALL RIGHTS RESERVED.</p>
+        <p style="margin-top:15px; font-size:0.7rem; opacity:0.6;">60% Corporate Interest | 16% Commission Policy.</p>
     </footer>
 
     <script>
         function toggleMenu() { document.getElementById('sideMenu').classList.toggle('active'); }
-        function toggleTheme() {
-            const b = document.body; const i = document.getElementById('themeIcon');
-            if(b.getAttribute('data-theme')==='dark'){ b.removeAttribute('data-theme'); i.className='fas fa-moon'; }
-            else { b.setAttribute('data-theme', 'dark'); i.className='fas fa-sun'; }
+        function toggleVision() { 
+            const box = document.getElementById('visionBox'); box.classList.toggle('active');
+            const icon = document.getElementById('visionIcon'); icon.classList.toggle('fa-plus'); icon.classList.toggle('fa-minus');
         }
-        function applyFilter() {
+        function applyFilters() {
             let s = document.getElementById('propertySearch').value.toLowerCase();
-            let m = parseInt(document.getElementById('priceRange').value);
-            document.getElementById('priceVal').innerText = "₦" + m.toLocaleString();
+            let p = parseInt(document.getElementById('priceRange').value);
+            document.getElementById('priceValue').innerText = "₦" + p.toLocaleString();
             document.querySelectorAll('.card').forEach(c => {
-                let p = parseInt(c.getAttribute('data-price'));
-                let t = c.getAttribute('data-tags').toLowerCase();
-                c.style.display = (p <= m && t.includes(s)) ? "block" : "none";
+                let cp = parseInt(c.getAttribute('data-price'));
+                let ct = c.getAttribute('data-tags').toLowerCase();
+                c.style.display = (cp <= p && ct.includes(s)) ? "block" : "none";
             });
         }
     </script>
