@@ -1,161 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NG">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BLESSEDREALTY™ | ACROPOLIS 2032</title>
+    <title>BLESSEDREALTY™ | Strategic Future</title>
+    
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cloudflare.com">
+
     <style>
-        :root { --gold: #C5A059; --navy: #001f3f; --charcoal: #080808; --white: #FFFFFF; }
+        :root { --gold: #D4AF37; --navy: #001f3f; --charcoal: #080808; --grey: #2F2F2F; --white: #FFFFFF; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background: var(--charcoal); color: var(--white); overflow-x: hidden; }
+        body { background: var(--charcoal); color: var(--white); overflow-x: hidden; width: 100%; }
 
-        /* NAVIGATION */
-        nav { background: rgba(8, 8, 8, 0.95); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 2000; border-bottom: 2px solid var(--gold); backdrop-filter: blur(10px); }
-        .logo { font-family: 'Orbitron', sans-serif; color: var(--gold); font-size: 0.9rem; font-weight: bold; letter-spacing: 2px; }
-        .menu-btn { color: var(--gold); font-size: 1.6rem; cursor: pointer; background: none; border: none; }
+        nav { background: var(--navy); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 2000; border-bottom: 2px solid var(--gold); }
+        .logo { font-family: 'Orbitron', sans-serif; color: var(--white); font-size: clamp(0.8rem, 4vw, 1.1rem); font-weight: bold; letter-spacing: 2px; }
+        .logo span { color: var(--gold); }
+        .menu-trigger { color: var(--white); font-size: 1.8rem; cursor: pointer; background: none; border: none; }
 
-        /* SIDE MENU INTERFACE */
-        .side-menu { position: fixed; top: 0; left: -100%; width: 90%; max-width: 440px; height: 100%; background: linear-gradient(160deg, var(--navy) 0%, var(--charcoal) 100%); transition: 0.5s; z-index: 3000; padding: 60px 20px; border-right: 3px solid var(--gold); overflow-y: auto; }
+        .side-menu { position: fixed; top: 0; left: -100%; width: 92%; max-width: 440px; height: 100%; background: linear-gradient(160deg, var(--navy) 0%, var(--charcoal) 100%); transition: 0.5s; z-index: 3000; padding: 70px 20px; border-right: 3px solid var(--gold); overflow-y: auto; }
         .side-menu.active { left: 0; box-shadow: 20px 0 60px rgba(0,0,0,0.9); }
         .close-btn { position: absolute; top: 20px; right: 25px; color: var(--gold); font-size: 2.2rem; cursor: pointer; }
 
-        /* PROTOCOL BOXES */
-        .protocol-box { background: rgba(255,255,255,0.03); border: 1px solid #333; padding: 12px; border-radius: 6px; margin-bottom: 15px; font-size: 0.65rem; color: #bbb; line-height: 1.5; border-left: 3px solid var(--gold); }
-        .protocol-box b { color: var(--gold); display: block; margin-bottom: 5px; font-family: 'Orbitron'; font-size: 0.6rem; text-transform: uppercase; }
+        .menu-acropolis-link { display: block; background: var(--white); color: var(--navy); border: 2px solid var(--gold); padding: 15px; border-radius: 8px; text-align: center; font-family: 'Orbitron'; text-decoration: none; margin-bottom: 20px; font-weight: bold; }
 
-        /* FORM STYLING */
-        details { background: rgba(255,255,255,0.02); border: 1px solid #333; border-radius: 8px; margin-bottom: 12px; }
-        summary { padding: 15px; color: var(--gold); font-family: 'Orbitron'; font-size: 0.75rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
-        summary::after { content: '\f0fe'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 0.8rem; }
-        details[open] summary::after { content: '\f146'; }
+        details { background: rgba(255,255,255,0.05); border: 1px solid var(--grey); border-radius: 8px; margin-bottom: 12px; }
+        summary { padding: 15px; color: var(--gold); font-family: 'Orbitron'; font-size: 0.75rem; cursor: pointer; display: flex; justify-content: space-between; font-weight: bold; }
+        .form-content { padding: 15px; border-top: 1px solid var(--grey); }
         
-        .form-content { padding: 15px; border-top: 1px solid #222; }
-        input, select, textarea { width: 100%; padding: 12px; margin-bottom: 10px; background: #000; border: 1px solid #444; color: white; border-radius: 4px; font-size: 0.85rem; }
-        .submit-btn { width: 100%; background: var(--gold); color: black; border: none; padding: 12px; font-weight: bold; border-radius: 4px; font-family: 'Orbitron'; cursor: pointer; }
+        input, select, textarea { width: 100%; padding: 12px; margin-bottom: 10px; background: var(--charcoal); border: 1px solid var(--white); color: var(--white); border-radius: 4px; font-size: 0.85rem; }
+        .submit-btn { width: 100%; background: var(--gold); color: var(--charcoal); border: none; padding: 14px; font-weight: bold; border-radius: 4px; font-family: 'Orbitron'; cursor: pointer; }
 
-        /* MAIN CONTENT */
-        .hero { padding: 60px 20px; text-align: center; background: radial-gradient(circle at top, var(--navy), var(--charcoal)); }
-        .hero h1 { font-family: 'Orbitron'; font-size: 2.6rem; color: var(--gold); text-shadow: 0 0 15px rgba(197, 160, 89, 0.4); margin-bottom: 5px; }
-        .container { padding: 20px; display: flex; flex-direction: column; gap: 30px; align-items: center; }
-        .card { background: #111; border-radius: 20px; overflow: hidden; border: 1px solid #222; max-width: 500px; width: 100%; box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
-        .card img { width: 100%; display: block; }
-        .card-body { padding: 25px; border-top: 3px solid var(--navy); }
+        .listings-container { display: flex; flex-direction: column; gap: 40px; padding: 40px 20px; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto; }
+        .photo-card { background: var(--grey); border-radius: 20px; overflow: hidden; border: 1px solid var(--navy); width: 100%; max-width: 500px; box-shadow: 0 15px 45px rgba(0,0,0,0.7); }
+        .photo-card img { width: 100%; display: block; object-fit: cover; height: 300px; }
+        .card-body { padding: 25px; border-top: 4px solid var(--gold); }
+        .card-body h2 { font-family: 'Orbitron'; color: var(--white); font-size: 1.1rem; }
 
-        /* WHATSAPP FLOAT (09072978833) */
-        .whatsapp-float { position: fixed; bottom: 30px; right: 25px; background: #25d366; color: white; width: 65px; height: 65px; border-radius: 50%; text-align: center; line-height: 65px; font-size: 35px; z-index: 5000; box-shadow: 0 10px 25px rgba(0,0,0,0.4); text-decoration: none; }
+        .acropolis-section { padding: 100px 20px; text-align: center; background: radial-gradient(circle at bottom, var(--navy), var(--charcoal)); border-top: 3px solid var(--gold); margin-top: 60px; }
+        .acropolis-section h1 { font-family: 'Orbitron'; font-size: clamp(2.5rem, 12vw, 4rem); color: var(--gold); text-shadow: 0 0 25px var(--gold); }
+
+        .whatsapp-link { position: fixed; bottom: 25px; right: 25px; background: #25d366; color: var(--white); width: 65px; height: 65px; border-radius: 50%; text-align: center; line-height: 65px; font-size: 35px; z-index: 5000; box-shadow: 0 10px 25px rgba(0,0,0,0.5); text-decoration: none; }
+
+        @media (min-width: 768px) { .listings-container { flex-direction: row; flex-wrap: wrap; justify-content: center; } .photo-card { width: 45%; } }
     </style>
 </head>
 <body>
 
     <nav>
-        <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-        <div class="logo">𝗕𝗟𝗘𝗦𝗦𝗘𝗗𝐑𝙴𝙰𝗟𝚃𝗬™</div>
+        <button class="menu-trigger" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+        <div class="logo">𝗕𝗟𝗘𝗦𝗦𝗘𝗗<span>𝐑𝙴𝙰𝙻𝚃𝚈™</span></div>
         <div style="width: 30px;"></div>
     </nav>
 
-    <!-- SIDE MENU INTERFACE -->
     <div id="sideMenu" class="side-menu">
         <span class="close-btn" onclick="toggleMenu()">&times;</span>
         
-        <div style="background: rgba(255,255,255,0.05); border-left: 4px solid var(--gold); padding: 15px; margin-bottom: 25px;">
-            <h4 style="font-family:'Orbitron'; color:var(--gold); font-size:0.7rem;">ACROPOLIS VISION 2032</h4>
-            <p style="font-size:0.8rem; color:#ddd; font-style:italic;">₦45Billion Naira AI Masterpiece.</p>
-        </div>
+        <a href="#acropolis-vision" class="menu-acropolis-link" onclick="toggleMenu()">
+            ACROPOLIS 2032 VISION
+        </a>
 
-        <!-- 1. INVESTOR PARTNERSHIP -->
-        <details>
-            <summary>INVESTOR PARTNERSHIP</summary>
+        <!-- COMPREHENSIVE ABOUT US -->
+        <details open>
+            <summary>ABOUT BLESSEDREALTY™</summary>
             <div class="form-content">
-                <div class="protocol-box">
-                    <b>INVESTMENT PROTOCOLS</b>
-                    • <b>48-Hour Payout:</b> Profit shares are disbursed within 48 hours after buyer's funds are fully cleared in BLESSEDREALTY™ accounts.<br>
-                    • <b>Equity Yield:</b> Profits are strictly 1:1 against capital contribution.
-                </div>
-                <input type="text" placeholder="Individual/Entity Name" required>
-                <input type="text" placeholder="Capital Capacity" required>
-                <button class="submit-btn">PROPOSE PARTNERSHIP</button>
+                <p style="font-size: 0.85rem; color: #ddd; line-height: 1.6; margin-bottom: 15px;">
+                    <b>BLESSEDREALTY™</b> is a high-yield Real Estate firm specializing in <b>Strategic Land Holdings, Property Flips, and Smart Infrastructure</b>.
+                </p>
+                <p style="font-size: 0.8rem; color: #bbb; line-height: 1.6;">
+                    Our operations are split between <b>Global Wholesaling</b>—acquiring large land parcels and distressed assets—and the development of <b>AI-Powered Smart Cities</b>. We operate with a strict <b>60% Controlling Interest</b> governance to ensure project integrity and investor security.
+                </p>
+                <p style="font-size: 0.75rem; color: var(--gold); margin-top: 10px; font-weight: bold;">
+                    PROFIT = INVESTMENT EQUITY | 48HR PAYOUTS | GOVERNANCE-LED GROWTH.
+                </p>
             </div>
         </details>
 
-        <!-- 2. SOURCING PARTNERSHIP -->
+        <!-- PARTNERSHIP TRACKS -->
+        <details>
+            <summary>INVESTOR PARTNERSHIP</summary>
+            <div class="form-content">
+                <input type="text" placeholder="Entity Name">
+                <textarea placeholder="Why do you desire to invest in BLESSEDREALTY™? (Describe your Interest)" style="height:80px;"></textarea>
+                <button class="submit-btn">PROPOSE</button>
+            </div>
+        </details>
+
         <details>
             <summary>SOURCING PARTNERSHIP</summary>
             <div class="form-content">
-                <div class="protocol-box">
-                    <b>SOURCING PROTOCOLS</b>
-                    • <b>Closing Trigger:</b> Fees are processed within 48 hours of successful property acquisition and buyer fund verification.<br>
-                    • <b>No Upfront:</b> No payout occurs on unverified or unclosed property leads.
-                </div>
-                <input type="text" placeholder="Lead Source / Location" required>
+                <input type="text" placeholder="Lead Location / Size">
                 <button class="submit-btn">SUBMIT LEAD</button>
             </div>
         </details>
 
-        <!-- 3. HIRING / CAREERS (UPDATED PAYOUTS) -->
         <details>
             <summary>HIRING / CAREERS</summary>
             <div class="form-content">
-                <div class="protocol-box">
-                    <b>RECRUITMENT PROTOCOLS</b>
-                    • <b>Administrative / Management:</b> Payouts are salary-based + initiative packages, processed exclusively on the <b>28th of every month</b>.<br>
-                    • <b>Field Agents:</b> Strictly 16% Total Commission (8/8 Split). Commissions are paid within 48 hours of buyer payment clearance.<br>
-                    • <b>Zero Base:</b> Field agents receive NO base salary. Payment is deal-contingent only.
-                </div>
-                <input type="text" placeholder="Full Legal Name" required>
-                <select>
-                    <option>Field Agent (Commission Only - 48hr Payout)</option>
-                    <option>Administrative / Management (Salary - Paid 28th)</option>
-                </select>
-                <button class="submit-btn">APPLY NOW</button>
+                <input type="text" placeholder="Full Name">
+                <textarea placeholder="Summarize your work experience and achievements..." style="height:80px;"></textarea>
+                <button class="submit-btn">APPLY</button>
             </div>
         </details>
 
-        <!-- 4. PLOT REGISTRATION -->
-        <details open>
-            <summary>ADD UP YOUR PLOTS</summary>
+        <!-- PLOT REGISTRATION -->
+        <details>
+            <summary>ADD UP YOUR PLOTS (₦5k - ₦25k)</summary>
             <div class="form-content">
-                <input type="text" placeholder="Full Name" required>
-                <input type="tel" placeholder="Phone Number" required>
+                <input type="text" placeholder="Buyer Name">
+                <input type="tel" placeholder="Phone Number">
                 <select>
-                    <option>Standard Plot - ₦5,000</option>
-                    <option>Gold Plot - ₦15,000</option>
-                    <option>Elite Plot - ₦25,000</option>
+                    <option>Standard - ₦5,000</option>
+                    <option>Gold - ₦15,000</option>
+                    <option>Elite - ₦25,000</option>
                 </select>
                 <button class="submit-btn">SECURE PLOT</button>
             </div>
         </details>
-
-        <a href="https://wa.me" style="display:block; background:#25d366; color:white; padding:15px; border-radius:8px; text-align:center; font-family:'Orbitron'; font-weight:bold; text-decoration:none; margin-top:20px;">
-            <i class="fab fa-whatsapp"></i> OFFICIAL INVESTOR LINE
-        </a>
     </div>
 
-    <!-- MAIN PAGE -->
-    <header class="hero">
-        <h1 style="letter-spacing: 5px;">ACROPOLIS</h1>
-        <p style="font-size:0.7rem; letter-spacing:2px; color:#666; font-family:'Orbitron';">₦45 BILLION AI SMART DEVELOPMENT</p>
-    </header>
-
-    <div class="container">
-        <div class="card">
-            <img src="https://ibb.co" alt="Acropolis AI Building">
+    <!-- MAIN INTERFACE: FOUR LISTING CARDS -->
+    <div class="listings-container">
+        <div class="photo-card">
+            <img src="https://placeholder.com" alt="Wholesale Alpha">
             <div class="card-body">
-                <h2 style="font-family:'Orbitron'; color:var(--gold);">THE ACROPOLIS</h2>
-                <p style="color:#888; font-size:0.85rem; margin-top:10px;">A 9-storey marvel of AI integration and sustainable luxury. Projected for 2032 completion.</p>
-                <p style="color:var(--gold); font-weight:bold; margin-top:15px; font-size: 1.1rem;">VALUATION: ₦45,000,000,000</p>
+                <h2>WHOLESALE PLOT ALPHA</h2>
+                <p style="color:var(--gold); font-size:0.8rem; margin-top:5px;">STRATEGIC LAND ACQUISITION</p>
+            </div>
+        </div>
+
+        <div class="photo-card">
+            <img src="https://placeholder.com" alt="Flip II">
+            <div class="card-body">
+                <h2>ZENITH FLIP II</h2>
+                <p style="color:var(--gold); font-size:0.8rem; margin-top:5px;">DISTRESSED PROPERTY FLIP</p>
+            </div>
+        </div>
+
+        <div class="photo-card">
+            <img src="https://placeholder.com" alt="Vantage III">
+            <div class="card-body">
+                <h2>VANTAGE POINT III</h2>
+                <p style="color:var(--gold); font-size:0.8rem; margin-top:5px;">PREMIUM RESIDENTIAL HOLDING</p>
+            </div>
+        </div>
+
+        <div class="photo-card">
+            <img src="https://placeholder.com" alt="Horizon IV">
+            <div class="card-body">
+                <h2>HORIZON VIEW IV</h2>
+                <p style="color:var(--gold); font-size:0.8rem; margin-top:5px;">WHOLESALE COMMERCIAL HUB</p>
             </div>
         </div>
     </div>
 
-    <a href="https://wa.me" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <!-- FINAL ACROPOLIS SECTION -->
+    <section id="acropolis-vision" class="acropolis-section">
+        <p style="letter-spacing: 8px; color: var(--white); font-family: 'Orbitron'; font-size: 0.7rem; margin-bottom: 10px;">FUTURE VISION</p>
+        <h1>ACROPOLIS</h1>
+        <p style="max-width: 700px; margin: 20px auto; line-height: 1.8; color: #ccc;">
+            "BLESSEDREALTY™'s ₦45Billion Naira, 9-Storey AI smart Mixed-purpose Residential Building – projected for 2032!"
+        </p>
+        
+        <div class="photo-card" style="margin: 40px auto; border: 3px solid var(--gold); max-width: 550px;">
+            <img src="https://ibb.co" alt="Acropolis Building">
+            <div class="card-body" style="background: var(--charcoal);">
+                <h2 style="font-family:'Orbitron'; color:var(--gold); font-size: 1.5rem;">ACROPOLIS 2032</h2>
+                <p style="color:var(--white); font-weight:bold; margin-top:10px;">VALUATION: ₦45,000,000,000</p>
+            </div>
+        </div>
+    </section>
 
-    <footer style="text-align:center; padding:50px; color:#333; font-size:0.7rem; font-family:'Orbitron';">
-        &copy; 2026 BLESSEDREALTY™ CORPORATE GLOBAL. ALL RIGHTS RESERVED.
-    </footer>
+    <!-- WHATSAPP LOGO -->
+    <a href="https://wa.me" class="whatsapp-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-    <script>function toggleMenu() { document.getElementById('sideMenu').classList.toggle('active'); }</script>
-
+    <script>
+        function toggleMenu() { document.getElementById('sideMenu').classList.toggle('active'); }
+    </script>
 </body>
 </html>
