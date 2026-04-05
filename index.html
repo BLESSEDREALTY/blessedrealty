@@ -3,101 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BLESSEDREALTY™ | Strategic Land & Property Holdings</title>
-    
-    <!-- FONTS -->
+    <title>BLESSEDREALTY™ | ACROPOLIS 2032</title>
     <link href="https://googleapis.com" rel="stylesheet">
-    
-    <!-- ICONS - Fixed FontAwesome 6 CDN -->
     <link rel="stylesheet" href="https://cloudflare.com">
-
     <style>
-        :root { 
-            --gold: #C5A059; --black: #0A0A0A; --grey: #1A1A1A; --white: #FFFFFF; --soft-white: #F4F4F4; 
-        }
-
+        :root { --gold: #C5A059; --navy: #001f3f; --charcoal: #080808; --white: #FFFFFF; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; -webkit-tap-highlight-color: transparent; }
-        
-        html, body { height: 100%; width: 100%; background: var(--soft-white); color: var(--black); overflow-x: hidden; display: flex; flex-direction: column; }
+        body { background: var(--charcoal); color: var(--white); overflow-x: hidden; }
 
-        /* --- NAVIGATION --- */
-        nav { 
-            background: var(--black); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; 
-            position: sticky; top: 0; z-index: 2000; border-bottom: 3px solid var(--gold); width: 100%; 
-        }
-        .logo { font-family: 'Cinzel', serif; color: var(--gold); font-size: clamp(1rem, 4vw, 1.3rem); letter-spacing: 2px; font-weight: bold; }
-        .menu-btn { color: var(--gold); font-size: 1.8rem; cursor: pointer; background: none; border: none; }
+        /* NAVIGATION */
+        nav { background: rgba(8, 8, 8, 0.95); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 2000; border-bottom: 2px solid var(--gold); backdrop-filter: blur(10px); }
+        .logo { font-family: 'Orbitron', sans-serif; color: var(--gold); font-size: 0.9rem; font-weight: bold; letter-spacing: 2px; }
+        .menu-btn { color: var(--gold); font-size: 1.6rem; cursor: pointer; background: none; border: none; }
 
-        /* --- SIDE SLIDE MENU --- */
-        .side-menu { 
-            position: fixed; top: 0; left: -100%; width: 85%; max-width: 350px; height: 100%; 
-            background: var(--black); color: var(--white); transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
-            z-index: 3000; padding: 60px 25px; overflow-y: auto; border-right: 3px solid var(--gold); 
-        }
-        .side-menu.active { left: 0; box-shadow: 15px 0 50px rgba(0,0,0,0.9); }
+        /* SIDE MENU INTERFACE */
+        .side-menu { position: fixed; top: 0; left: -100%; width: 90%; max-width: 440px; height: 100%; background: linear-gradient(160deg, var(--navy) 0%, var(--charcoal) 100%); transition: 0.5s; z-index: 3000; padding: 60px 20px; border-right: 3px solid var(--gold); overflow-y: auto; }
+        .side-menu.active { left: 0; box-shadow: 20px 0 60px rgba(0,0,0,0.9); }
         .close-btn { position: absolute; top: 20px; right: 25px; color: var(--gold); font-size: 2.2rem; cursor: pointer; }
 
-        /* MENU CONTENT */
-        .menu-info { background: var(--grey); padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid var(--gold); }
-        .menu-info h4 { color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.9rem; margin-bottom: 8px; }
-        .menu-info p { font-size: 0.75rem; color: #ccc; line-height: 1.6; }
+        /* PROTOCOL BOXES */
+        .protocol-box { background: rgba(255,255,255,0.03); border: 1px solid #333; padding: 12px; border-radius: 6px; margin-bottom: 15px; font-size: 0.65rem; color: #bbb; line-height: 1.5; border-left: 3px solid var(--gold); }
+        .protocol-box b { color: var(--gold); display: block; margin-bottom: 5px; font-family: 'Orbitron'; font-size: 0.6rem; text-transform: uppercase; }
 
-        /* VISION TAP-TO-REVEAL */
-        .vision-box { background: #111; border: 1px solid #333; border-radius: 8px; margin-bottom: 20px; cursor: pointer; }
-        .vision-header { padding: 15px; color: var(--gold); font-family: 'Cinzel', serif; display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: bold; }
-        .vision-content { max-height: 0; overflow: hidden; transition: 0.4s; padding: 0 15px; font-size: 0.8rem; color: #888; }
-        .vision-box.active .vision-content { max-height: 200px; padding-bottom: 15px; }
+        /* FORM STYLING */
+        details { background: rgba(255,255,255,0.02); border: 1px solid #333; border-radius: 8px; margin-bottom: 12px; }
+        summary { padding: 15px; color: var(--gold); font-family: 'Orbitron'; font-size: 0.75rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        summary::after { content: '\f0fe'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 0.8rem; }
+        details[open] summary::after { content: '\f146'; }
+        
+        .form-content { padding: 15px; border-top: 1px solid #222; }
+        input, select, textarea { width: 100%; padding: 12px; margin-bottom: 10px; background: #000; border: 1px solid #444; color: white; border-radius: 4px; font-size: 0.85rem; }
+        .submit-btn { width: 100%; background: var(--gold); color: black; border: none; padding: 12px; font-weight: bold; border-radius: 4px; font-family: 'Orbitron'; cursor: pointer; }
 
-        /* PRICE SLIDER (₦1.5M - ₦3B) */
-        .filter-box { background: #111; padding: 20px; border-radius: 10px; border: 1px solid #333; margin-bottom: 25px; }
-        .price-slider { width: 100%; accent-color: var(--gold); height: 6px; cursor: pointer; }
-        .price-label { color: var(--white); font-weight: bold; font-size: 0.9rem; display: block; margin-top: 10px; }
+        /* MAIN CONTENT */
+        .hero { padding: 60px 20px; text-align: center; background: radial-gradient(circle at top, var(--navy), var(--charcoal)); }
+        .hero h1 { font-family: 'Orbitron'; font-size: 2.6rem; color: var(--gold); text-shadow: 0 0 15px rgba(197, 160, 89, 0.4); margin-bottom: 5px; }
+        .container { padding: 20px; display: flex; flex-direction: column; gap: 30px; align-items: center; }
+        .card { background: #111; border-radius: 20px; overflow: hidden; border: 1px solid #222; max-width: 500px; width: 100%; box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
+        .card img { width: 100%; display: block; }
+        .card-body { padding: 25px; border-top: 3px solid var(--navy); }
 
-        /* CORPORATE FORMS */
-        details { margin-bottom: 10px; background: #080808; border-radius: 6px; border: 1px solid #222; }
-        summary { padding: 12px; cursor: pointer; font-size: 0.85rem; color: var(--gold); font-weight: 600; list-style: none; }
-        .corp-form { padding: 15px; }
-        .corp-form input, .corp-form textarea, .corp-form select { 
-            width: 100%; padding: 10px; margin-bottom: 10px; background: #000; border: 1px solid #333; color: white; border-radius: 4px; font-size: 0.8rem; 
-        }
-        .submit-btn { width: 100%; background: var(--gold); color: black; border: none; padding: 12px; font-weight: bold; border-radius: 4px; text-transform: uppercase; }
-        .tc-small { font-size: 0.6rem; color: #666; display: block; margin-bottom: 10px; }
-
-        /* HERO & SEARCH */
-        .hero { 
-            width: 100%; height: 50vh; 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://unsplash.com') center/cover; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white); padding: 20px; 
-        }
-        .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 6vw, 3rem); color: var(--gold); margin-bottom: 8px; }
-        .hero p { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; color: #ddd; }
-        #propertySearch { 
-            width: 90%; max-width: 450px; padding: 15px 25px; border-radius: 50px; border: 2px solid var(--gold); 
-            background: var(--white); color: var(--black); font-size: 1rem; outline: none; box-shadow: 0 10px 30px rgba(0,0,0,0.4); 
-        }
-
-        /* GRID & CARDS */
-        .container { 
-            width: 100%; max-width: 1300px; margin: 30px auto; padding: 0 5%; 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; flex-grow: 1; 
-        }
-        .card { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid #eee; position: relative; transition: 0.4s; }
-        .card:hover { transform: translateY(-10px); }
-        .card img { width: 100%; height: 260px; object-fit: cover; }
-        .tag { position: absolute; top: 15px; left: 15px; background: var(--gold); color: black; padding: 5px 12px; font-weight: 800; font-size: 0.65rem; border-radius: 3px; z-index: 10; }
-        .card-body { padding: 20px; }
-        .price-tag { display: block; font-size: 1.4rem; font-weight: 700; color: var(--black); border-top: 1px solid #f9f9f9; padding-top: 15px; margin-top: 15px; }
-
-        /* WHATSAPP (FIXED ICON) */
-        .whatsapp-float { 
-            position: fixed; bottom: 25px; right: 25px; background-color: #25d366; color: white; 
-            width: 60px; height: 60px; border-radius: 50%; text-align: center; line-height: 60px; 
-            font-size: 32px; z-index: 5000; box-shadow: 0 10px 25px rgba(0,0,0,0.3); transition: 0.3s;
-        }
-
-        /* FOOTER */
-        footer { background: var(--black); color: #666; text-align: center; padding: 60px 5% 100px; width: 100%; border-top: 5px solid var(--gold); margin-top: auto; }
-        footer b { color: var(--gold); }
+        /* WHATSAPP FLOAT (09072978833) */
+        .whatsapp-float { position: fixed; bottom: 30px; right: 25px; background: #25d366; color: white; width: 65px; height: 65px; border-radius: 50%; text-align: center; line-height: 65px; font-size: 35px; z-index: 5000; box-shadow: 0 10px 25px rgba(0,0,0,0.4); text-decoration: none; }
     </style>
 </head>
 <body>
@@ -105,97 +52,110 @@
     <nav>
         <button class="menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
         <div class="logo">𝗕𝗟𝗘𝗦𝗦𝗘𝗗𝐑𝙴𝙰𝗟𝚃𝗬™</div>
-        <div style="width: 40px;"></div>
+        <div style="width: 30px;"></div>
     </nav>
 
-    <!-- SIDE MENU -->
+    <!-- SIDE MENU INTERFACE -->
     <div id="sideMenu" class="side-menu">
         <span class="close-btn" onclick="toggleMenu()">&times;</span>
         
-        <div class="menu-info">
-            <h4>ABOUT BLESSEDREALTY</h4>
-            <p>Strategic Land Acquisition, Property Flips, and Developments. We maintain 60% controlling interest governance.</p>
+        <div style="background: rgba(255,255,255,0.05); border-left: 4px solid var(--gold); padding: 15px; margin-bottom: 25px;">
+            <h4 style="font-family:'Orbitron'; color:var(--gold); font-size:0.7rem;">ACROPOLIS VISION 2032</h4>
+            <p style="font-size:0.8rem; color:#ddd; font-style:italic;">₦45Billion Naira AI Masterpiece.</p>
         </div>
 
-        <div class="vision-box" id="visionBox" onclick="toggleVision()">
-            <div class="vision-header"><span>OUR VISION</span><i class="fas fa-plus" id="visionIcon"></i></div>
-            <div class="vision-content">To build the biggest AI Futuristic and luxurious Real Estate empire the world has ever seen, in Nigeria.</div>
-        </div>
-
-        <div class="filter-box">
-            <label class="price-label" style="margin-bottom:10px;">MAX BUDGET (₦)</label>
-            <input type="range" id="priceRange" min="1500000" max="3000000000" step="5000000" value="3000000000" class="price-slider" oninput="applyFilters()">
-            <span class="price-label">Max: <span id="priceValue" style="color:var(--gold)">₦3,000,000,000</span></span>
-        </div>
-
-        <details>
-            <summary>HIRING / CAREERS</summary>
-            <form action="https://formspree.io" method="POST" class="corp-form">
-                <input type="text" name="Name" placeholder="Full Legal Name" required>
-                <input type="text" name="Exp" placeholder="Work Experience" required>
-                <span class="tc-small">16% Total Commission (8/8 Split). No base salary.</span>
-                <button type="submit" class="submit-btn">APPLY</button>
-            </form>
-        </details>
-
+        <!-- 1. INVESTOR PARTNERSHIP -->
         <details>
             <summary>INVESTOR PARTNERSHIP</summary>
-            <form action="https://formspree.io" method="POST" class="corp-form">
-                <input type="text" name="Investor" placeholder="Entity Name" required>
-                <input type="text" name="Source" placeholder="Funding Source" required>
-                <select name="FoundUs" required><option value="" disabled selected>How did you find us?</option><option>Social Media</option><option>Referral</option><option>Search</option></select>
-                <textarea name="Reason" placeholder="Reason for Interest" required></textarea>
-                <span class="tc-small">60% Corporate Interest logic applies.</span>
-                <button type="submit" class="submit-btn">SUBMIT</button>
-            </form>
+            <div class="form-content">
+                <div class="protocol-box">
+                    <b>INVESTMENT PROTOCOLS</b>
+                    • <b>48-Hour Payout:</b> Profit shares are disbursed within 48 hours after buyer's funds are fully cleared in BLESSEDREALTY™ accounts.<br>
+                    • <b>Equity Yield:</b> Profits are strictly 1:1 against capital contribution.
+                </div>
+                <input type="text" placeholder="Individual/Entity Name" required>
+                <input type="text" placeholder="Capital Capacity" required>
+                <button class="submit-btn">PROPOSE PARTNERSHIP</button>
+            </div>
         </details>
 
-        <a href="https://wa.me" style="display:block; color:var(--gold); padding:20px 0; font-weight:bold; border-top:1px solid #222; text-decoration:none;">CUSTOMER CARE</a>
+        <!-- 2. SOURCING PARTNERSHIP -->
+        <details>
+            <summary>SOURCING PARTNERSHIP</summary>
+            <div class="form-content">
+                <div class="protocol-box">
+                    <b>SOURCING PROTOCOLS</b>
+                    • <b>Closing Trigger:</b> Fees are processed within 48 hours of successful property acquisition and buyer fund verification.<br>
+                    • <b>No Upfront:</b> No payout occurs on unverified or unclosed property leads.
+                </div>
+                <input type="text" placeholder="Lead Source / Location" required>
+                <button class="submit-btn">SUBMIT LEAD</button>
+            </div>
+        </details>
+
+        <!-- 3. HIRING / CAREERS (UPDATED PAYOUTS) -->
+        <details>
+            <summary>HIRING / CAREERS</summary>
+            <div class="form-content">
+                <div class="protocol-box">
+                    <b>RECRUITMENT PROTOCOLS</b>
+                    • <b>Administrative / Management:</b> Payouts are salary-based + initiative packages, processed exclusively on the <b>28th of every month</b>.<br>
+                    • <b>Field Agents:</b> Strictly 16% Total Commission (8/8 Split). Commissions are paid within 48 hours of buyer payment clearance.<br>
+                    • <b>Zero Base:</b> Field agents receive NO base salary. Payment is deal-contingent only.
+                </div>
+                <input type="text" placeholder="Full Legal Name" required>
+                <select>
+                    <option>Field Agent (Commission Only - 48hr Payout)</option>
+                    <option>Administrative / Management (Salary - Paid 28th)</option>
+                </select>
+                <button class="submit-btn">APPLY NOW</button>
+            </div>
+        </details>
+
+        <!-- 4. PLOT REGISTRATION -->
+        <details open>
+            <summary>ADD UP YOUR PLOTS</summary>
+            <div class="form-content">
+                <input type="text" placeholder="Full Name" required>
+                <input type="tel" placeholder="Phone Number" required>
+                <select>
+                    <option>Standard Plot - ₦5,000</option>
+                    <option>Gold Plot - ₦15,000</option>
+                    <option>Elite Plot - ₦25,000</option>
+                </select>
+                <button class="submit-btn">SECURE PLOT</button>
+            </div>
+        </details>
+
+        <a href="https://wa.me" style="display:block; background:#25d366; color:white; padding:15px; border-radius:8px; text-align:center; font-family:'Orbitron'; font-weight:bold; text-decoration:none; margin-top:20px;">
+            <i class="fab fa-whatsapp"></i> OFFICIAL INVESTOR LINE
+        </a>
     </div>
 
-    <!-- MAIN GRID -->
-    <div id="main-content">
-        <section class="hero">
-            <h1>SECURE THE FUTURE</h1>
-            <p>Land Acquisition • Property Flips</p>
-            <input type="text" id="propertySearch" placeholder="Search (Lekki, Abuja, Epe)..." onkeyup="applyFilters()">
-        </section>
+    <!-- MAIN PAGE -->
+    <header class="hero">
+        <h1 style="letter-spacing: 5px;">ACROPOLIS</h1>
+        <p style="font-size:0.7rem; letter-spacing:2px; color:#666; font-family:'Orbitron';">₦45 BILLION AI SMART DEVELOPMENT</p>
+    </header>
 
-        <div class="container" id="propertyGrid">
-            <div class="card" data-price="35000000" data-tags="Lekki Lagos Heritage"><div class="tag">LAND SALE</div><img src="https://unsplash.com" alt="L1"><div class="card-body"><h3>Heritage Estate</h3><p>📍 Ibeju-Lekki</p><span class="price-tag">₦35,000,000</span></div></div>
-            <div class="card" data-price="450000000" data-tags="Maitama Abuja Onyx"><div class="tag">PROPERTY FLIP</div><img src="https://unsplash.com" alt="H1"><div class="card-body"><h3>The Onyx Duplex</h3><p>📍 Maitama</p><span class="price-tag">₦450,000,000</span></div></div>
-            <div class="card" data-price="12500000" data-tags="Epe Lagos Vantage"><div class="tag">LAND ACQUISITION</div><img src="https://unsplash.com" alt="L2"><div class="card-body"><h3>Vantage View</h3><p>📍 Epe</p><span class="price-tag">₦12,500,000</span></div></div>
-            <div class="card" data-price="1200000000" data-tags="Ikoyi Lagos Zenith"><div class="tag">RESIDENTIAL FLIP</div><img src="https://unsplash.com" alt="H2"><div class="card-body"><h3>The Zenith Terrace</h3><p>📍 Ikoyi</p><span class="price-tag">₦1,200,000,000</span></div></div>
+    <div class="container">
+        <div class="card">
+            <img src="https://ibb.co" alt="Acropolis AI Building">
+            <div class="card-body">
+                <h2 style="font-family:'Orbitron'; color:var(--gold);">THE ACROPOLIS</h2>
+                <p style="color:#888; font-size:0.85rem; margin-top:10px;">A 9-storey marvel of AI integration and sustainable luxury. Projected for 2032 completion.</p>
+                <p style="color:var(--gold); font-weight:bold; margin-top:15px; font-size: 1.1rem;">VALUATION: ₦45,000,000,000</p>
+            </div>
         </div>
     </div>
 
-    <!-- WHATSAPP FIXED -->
     <a href="https://wa.me" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-    <footer>
-        <p>&copy; 2026 <b>BLESSEDREALTY™ CORPORATE.</b> ALL RIGHTS RESERVED.</p>
-        <p style="margin-top:15px; opacity:0.6; font-size:0.7rem;">60% Corporate Interest | 16% Commission Policy.</p>
+    <footer style="text-align:center; padding:50px; color:#333; font-size:0.7rem; font-family:'Orbitron';">
+        &copy; 2026 BLESSEDREALTY™ CORPORATE GLOBAL. ALL RIGHTS RESERVED.
     </footer>
 
-    <script>
-        function toggleMenu() { document.getElementById('sideMenu').classList.toggle('active'); }
-        function toggleVision() { 
-            const box = document.getElementById('visionBox');
-            box.classList.toggle('active');
-            const icon = document.getElementById('visionIcon');
-            icon.classList.toggle('fa-plus'); icon.classList.toggle('fa-minus');
-        }
-        function applyFilters() {
-            let s = document.getElementById('propertySearch').value.toLowerCase();
-            let p = parseInt(document.getElementById('priceRange').value);
-            document.getElementById('priceValue').innerText = "₦" + p.toLocaleString();
-            document.querySelectorAll('.card').forEach(c => {
-                let cp = parseInt(c.getAttribute('data-price'));
-                let ct = c.getAttribute('data-tags').toLowerCase();
-                c.style.display = (cp <= p && ct.includes(s)) ? "block" : "none";
-            });
-        }
-    </script>
+    <script>function toggleMenu() { document.getElementById('sideMenu').classList.toggle('active'); }</script>
+
 </body>
-    </html>
-    
+</html>
