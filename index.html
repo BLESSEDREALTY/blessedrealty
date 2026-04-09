@@ -19,118 +19,57 @@ gtag('config', 'G-W4G2MCWP04');
 <style>
 body {margin:0;font-family:Poppins;background:#0a0a0a;color:white;}
 
-header {
-background:black;
-padding:15px;
-text-align:center;
-color:gold;
-font-size:24px;
-}
+header {background:black;padding:15px;text-align:center;color:gold;font-size:24px;}
 
-.tagline {
-text-align:center;
-color:grey;
-margin-top:-10px;
-}
+.tagline {text-align:center;color:grey;margin-top:-10px;}
 
-/* MENU BUTTON */
-.menuBtn {
-position:absolute;
-left:15px;
-top:15px;
-font-size:26px;
-cursor:pointer;
-z-index:1001;
-}
+.menuBtn {position:absolute;left:15px;top:15px;font-size:26px;cursor:pointer;z-index:1001;}
 
-/* OVERLAY */
 #overlay {
-position:fixed;
-width:100%;
-height:100%;
+position:fixed;width:100%;height:100%;
 background:rgba(0,0,0,0.6);
-display:none;
-z-index:999;
+display:none;z-index:999;
 }
 
-/* SIDEBAR */
 #sidebar {
-position:fixed;
-left:-100%;
-top:0;
-width:280px;
-height:100%;
-background:#111;
-padding:20px;
-transition:0.3s ease;
-overflow-y:auto;
-z-index:1000;
+position:fixed;left:-100%;top:0;width:280px;height:100%;
+background:#111;padding:20px;transition:0.3s;
+overflow-y:auto;z-index:1000;
 }
 
-#sidebar input {
-width:90%;
-padding:10px;
-margin:5px 0;
+.formHeader {
+background:#222;padding:10px;cursor:pointer;margin-top:10px;border-radius:5px;
 }
 
-#sidebar button {
-background:gold;
-border:none;
-padding:10px;
-width:100%;
+.formContent {
+display:none;background:#111;padding:10px;margin-top:5px;
 }
 
-/* SEARCH */
-.search-box {
-padding:30px;
-text-align:center;
-background:#111;
+input, select {
+width:90%;padding:10px;margin:5px 0;border:none;border-radius:5px;
 }
 
-select {
-padding:10px;
-margin:5px;
+button {
+background:gold;border:none;padding:10px;width:100%;cursor:pointer;
 }
 
-/* LISTINGS */
+.search-box {padding:30px;text-align:center;background:#111;}
+
 .cards {
-display:flex;
-flex-direction:column;
-gap:20px;
-padding:20px;
+display:flex;flex-direction:column;gap:20px;padding:20px;
 }
 
-.card {
-background:#111;
-border-radius:10px;
-overflow:hidden;
-}
-
-.card img {
-width:100%;
-height:200px;
-object-fit:cover;
-}
-
+.card {background:#111;border-radius:10px;overflow:hidden;}
+.card img {width:100%;height:200px;object-fit:cover;}
 .card h3 {padding:10px;}
 
-footer {
-background:black;
-padding:20px;
-text-align:center;
-}
+footer {background:black;padding:20px;text-align:center;}
 
-/* WHATSAPP */
-.whatsapp {
-position:fixed;
-bottom:20px;
-left:20px;
-}
+.whatsapp {position:fixed;bottom:20px;left:20px;}
 
-/* AI */
 .aiBtn {
 position:fixed;
-bottom:20px;
+bottom:90px; /* ABOVE TAWK */
 right:20px;
 background:gold;
 color:black;
@@ -141,7 +80,7 @@ cursor:pointer;
 
 #aiBox {
 position:fixed;
-bottom:90px;
+bottom:150px;
 right:20px;
 background:#111;
 padding:10px;
@@ -167,27 +106,58 @@ width:250px;
 <hr>
 
 <h3>About</h3>
-<p>We deliver smart, luxury and high ROI real estate solutions across Nigeria.</p>
+<p>Smart, luxury and high ROI real estate solutions across Nigeria.</p>
 
-<h3>ACROPOLIS</h3>
-<p>₦45B AI smart building redefining real estate by 2032.</p>
+<h3>ACROPOLIS 2032</h3>
+<p>₦45B AI-powered smart building redefining urban living.</p>
 
-<h3>Investor Form</h3>
-<input placeholder="Name">
+<!-- INVESTOR -->
+<div class="formHeader" onclick="toggleForm('investor')">Investor Partnership</div>
+<div id="investor" class="formContent">
+<input placeholder="Full Name">
 <input placeholder="Email">
-<input placeholder="Amount">
+<input placeholder="Investment Amount">
+<input placeholder="Why invest with BLESSEDREALTY?">
+<input placeholder="How did you hear about us?">
 <button>Submit</button>
+<p style="font-size:12px;color:grey;">
+60/40 structure. Returns within 48 hours after revenue clearance.
+</p>
+</div>
 
-<h3>Sourcing Partner</h3>
+<!-- PARTNER -->
+<div class="formHeader" onclick="toggleForm('partner')">Sourcing Partner</div>
+<div id="partner" class="formContent">
 <input placeholder="Name">
 <input placeholder="Phone">
-<button>Register</button>
+<input placeholder="Location">
+<input placeholder="Experience">
+<button>Apply</button>
+<p style="font-size:12px;color:grey;">
+Earn 16% commission (8% finder + 8% closing).
+</p>
+</div>
 
-<h3>Hiring</h3>
-<p>Field Agents: Commission only (16%)</p>
+<!-- HIRING -->
+<div class="formHeader" onclick="toggleForm('hiring')">Hiring</div>
+<div id="hiring" class="formContent">
 <input placeholder="Name">
 <input placeholder="Role">
+<input placeholder="Experience">
 <button>Apply</button>
+<p style="font-size:12px;color:grey;">
+Field agents = commission only. Admin paid monthly (28th).
+</p>
+</div>
+
+<!-- WHOLESALE -->
+<div class="formHeader" onclick="toggleForm('wholesale')">Wholesale Agency</div>
+<div id="wholesale" class="formContent">
+<p>Select Package:</p>
+<button>₦5,000/month</button>
+<button>₦15,000/month</button>
+<button>₦35,000/month</button>
+</div>
 
 </div>
 
@@ -195,33 +165,10 @@ width:250px;
 <div class="search-box">
 <h2>Find Properties</h2>
 
-<select>
-<option>Location</option>
-<option>Uyo</option>
-<option>Lagos</option>
-<option>Abuja</option>
-</select>
-
-<select>
-<option>Power Band</option>
-<option>Band A</option>
-<option>Band B</option>
-<option>Band C</option>
-<option>Band D</option>
-<option>Band E</option>
-</select>
-
-<select>
-<option>Price</option>
-<option>₦1M - ₦3B</option>
-</select>
-
-<select>
-<option>Type</option>
-<option>Residential</option>
-<option>Commercial</option>
-<option>Land</option>
-</select>
+<select><option>Location</option><option>Uyo</option><option>Lagos</option></select>
+<select><option>Power Band</option><option>A-E</option></select>
+<select><option>Price</option><option>₦1M - ₦3B</option></select>
+<select><option>Type</option><option>Residential</option></select>
 
 </div>
 
@@ -238,6 +185,30 @@ width:250px;
 <h3>Abuja Smart Home - ₦180M</h3>
 </div>
 
+<div class="card">
+<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c">
+<h3>Ikoyi Luxury Apartment - ₦320M</h3>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6">
+<h3>Port Harcourt Duplex - ₦150M</h3>
+</div>
+
+<p style="text-align:center;color:grey;">More listings coming soon...</p>
+
+</div>
+
+<!-- ACROPOLIS -->
+<div style="padding:20px;">
+<h2 style="color:gold;">ACROPOLIS 2032</h2>
+<p style="color:grey;">
+₦45 Billion AI-powered smart building with luxury suites, rooftop amenities,
+and advanced infrastructure.
+</p>
+
+<img src="https://raw.githubusercontent.com/BLESSEDREALTY/blessedrealty/97e0fd0b1904e8cb61adeec01de546fc94fcbd2c/image_63e3942b.png"
+style="width:100%;border-radius:12px;box-shadow:0 0 20px gold;">
 </div>
 
 <footer>© 2026 BLESSEDREALTY™</footer>
@@ -267,6 +238,11 @@ document.getElementById("sidebar").style.left="-100%";
 document.getElementById("overlay").style.display="none";
 }
 
+function toggleForm(id){
+let x=document.getElementById(id);
+x.style.display = x.style.display==="block"?"none":"block";
+}
+
 function toggleAI(){
 let box=document.getElementById("aiBox");
 box.style.display=box.style.display==="none"?"block":"none";
@@ -277,15 +253,14 @@ let input=document.getElementById("userInput").value.toLowerCase();
 let res="We’ll connect you.";
 
 if(input.includes("price")) res="₦1M–₦3B listings available.";
-if(input.includes("uyo")) res="Listings available in Uyo.";
-if(input.includes("acropolis")) res="₦45B flagship project.";
+if(input.includes("uyo")) res="Listings in Uyo available.";
+if(input.includes("acropolis")) res="₦45B flagship smart building.";
 
 document.getElementById("response").innerText=res;
 }
 </script>
 
-<!-- TAWK.TO LIVE CHAT -->
-<!--Start of Tawk.to Script-->
+<!-- TAWK.TO -->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
@@ -297,7 +272,6 @@ s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
-<!--End of Tawk.to Script-->
 
 </body>
 </html>
