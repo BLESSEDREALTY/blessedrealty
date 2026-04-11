@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BLESSEDREALTY Admin</title>
+
+<style>
+body {background:#0a0a0a;color:white;font-family:sans-serif;}
+h1 {color:gold;text-align:center;}
+
+.nav {
+display:flex;
+gap:10px;
+justify-content:center;
+margin:20px;
+}
+
+.nav button {
+padding:10px;
+background:gold;
+border:none;
+cursor:pointer;
+}
+
+.section {
+display:none;
+padding:20px;
+}
+
+table {
+width:100%;
+border-collapse:collapse;
+margin-top:10px;
+}
+
+th, td {
+border:1px solid #333;
+padding:10px;
+}
+
+.action-btn {
+margin-right:5px;
+cursor:pointer;
+padding:5px 10px;
+border:none;
+}
+
+.approve {background:green;}
+.reject {background:red;}
+.delete {background:black;color:white;}
+</style>
+</head>
+
+<body>
+
+<h1>BLESSEDREALTY™ Dashboard</h1>
+
+<div class="nav">
+<button onclick="showSection('investors')">Investors</button>
+<button onclick="showSection('partners')">Partners</button>
+<button onclick="showSection('hiring')">Hiring</button>
+</div>
+
+<!-- INVESTORS -->
+<div id="investors" class="section">
+<h2>Investors</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Amount</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="investorTable"></tbody>
+</table>
+</div>
+
+<!-- PARTNERS -->
+<div id="partners" class="section">
+<h2>Partners</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Phone</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="partnerTable"></tbody>
+</table>
+</div>
+
+<!-- HIRING -->
+<div id="hiring" class="section">
+<h2>Hiring Applications</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Experience</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="hiringTable"></tbody>
+</table>
+</div>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+apiKey: "AIzaSyClRKoMDve6Kd41rQvLVvQ70jxyktCXo50",
+authDomain: "blessedrealty-00001.firebaseapp.com",
+projectId: "blessedrealty-00001",
+storageBucket: "blessedrealty-00001.firebasestorage.app",
+messagingSenderId: "484588805090",
+appId: "1:484588805090:web:58647011e00daff15f77bb"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+function showSection(id){
+document.querySelectorAll('.section').forEach(s=>s.style.display="none");
+document.getElementById(id).style.display="block";
+}
+
+showSection('investors');
+
+// LOAD INVESTORS
+db.collection("investors").onSnapshot(snapshot=>{
+let html="";
+snapshot.forEach(doc=>{
+let d = doc.data();
+html += `
+<tr>
+<td>${d.name||''}</td>
+<td>${d.email||''}</td>
+<td>${d.amount||''}</td>
+<td>
+<button class="action-btn approve" onclick="approve('${doc.id}','investors')">Approve</button>
+<button class="action-btn reject" onclick="reject('${doc.id}','investors')">Reject</button>
+<button class="action-btn delete" onclick="removeDoc('${doc.id}','investors')">Delete</button>
+</td>
+</tr>`;
+});
+document.getElementById("investorTable").innerHTML = html;
+});
+
+// LOAD PARTNERS
+db.collection("partners").onSnapshot(snapshot=>{
+let html="";
+snapshot.forEach(doc=>{
+let d = doc.data();
+html += `
+<tr>
+<td>${d.name||''}</td>
+<td>${d.phone||''}</td>
+<td>
+<button class="action-btn approve" onclick="approve('${doc.id}','partners')">Approve</button>
+<button class="action-btn reject" onclick="reject('${doc.id}','partners')">Reject</button>
+<button class="action-btn delete" onclick="removeDoc('${doc.id}','partners')">Delete</button>
+</td>
+</tr>`;
+});
+document.getElementById("partnerTable").innerHTML = html;
+});
+
+// LOAD HIRING
+db.collection("hiring").onSnapshot(snapshot=>{
+let html="";
+snapshot.forEach(doc=>{
+let d = doc.data();
+html += `
+<tr>
+<td>${d.name||''}</td>
+<td>${d.experience||''}</td>
+<td>
+<button class="action-btn approve" onclick="approve('${doc.id}','hiring')">Approve</button>
+<button class="action-btn reject" onclick="reject('${doc.id}','hiring')">Reject</button>
+<button class="action-btn delete" onclick="removeDoc('${doc.id}','hiring')">Delete</button>
+</td>
+</tr>`;
+});
+document.getElementById("hiringTable").innerHTML = html;
+});
+
+// ACTIONS
+function removeDoc(id, collection){
+db.collection(collection).doc(id).delete();
+}
+
+function approve(id, collection){
+db.collection(collection).doc(id).update({status:"approved"});
+alert("Approved");
+}
+
+function reject(id, collection){
+db.collection(collection).doc(id).update({status:"rejected"});
+alert("Rejected");
+}
+</script>
+
+</body>
+</html>
