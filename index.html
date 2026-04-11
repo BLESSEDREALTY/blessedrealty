@@ -14,79 +14,30 @@ gtag('js', new Date());
 gtag('config', 'G-W4G2MCWP04');
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-
 <style>
-body {margin:0;font-family:Poppins;background:#0a0a0a;color:white;}
-
+body {margin:0;background:#0a0a0a;color:white;font-family:sans-serif;}
 header {background:black;padding:15px;text-align:center;color:gold;font-size:24px;}
 
-.tagline {text-align:center;color:grey;margin-top:-10px;}
-
-.menuBtn {position:absolute;left:15px;top:15px;font-size:26px;cursor:pointer;z-index:1001;}
-
-#overlay {
-position:fixed;width:100%;height:100%;
-background:rgba(0,0,0,0.6);
-display:none;z-index:999;
-}
+.menuBtn {position:absolute;left:15px;top:15px;font-size:26px;cursor:pointer;}
 
 #sidebar {
-position:fixed;left:-100%;top:0;width:280px;height:100%;
-background:#111;padding:20px;transition:0.3s;
-overflow-y:auto;z-index:1000;
+position:fixed;left:-100%;top:0;width:300px;height:100%;
+background:#111;padding:20px;transition:0.3s;overflow-y:auto;
 }
 
-.formHeader {
-background:#222;padding:10px;cursor:pointer;margin-top:10px;border-radius:5px;
-}
+#overlay {position:fixed;width:100%;height:100%;display:none;background:rgba(0,0,0,0.6);}
 
-.formContent {
-display:none;background:#111;padding:10px;margin-top:5px;
-}
+.formContent {display:none;background:#111;padding:10px;margin-top:5px;}
+.formHeader {background:#222;padding:10px;cursor:pointer;margin-top:10px;}
 
-input, select {
-width:90%;padding:10px;margin:5px 0;border:none;border-radius:5px;
-}
-
-button {
-background:gold;border:none;padding:10px;width:100%;cursor:pointer;
-}
-
-.search-box {padding:30px;text-align:center;background:#111;}
-
-.cards {
-display:flex;flex-direction:column;gap:20px;padding:20px;
-}
-
-.card {background:#111;border-radius:10px;overflow:hidden;}
+.cards {padding:20px;}
+.card {background:#111;margin-bottom:15px;border-radius:10px;overflow:hidden;}
 .card img {width:100%;height:200px;object-fit:cover;}
-.card h3 {padding:10px;}
 
-footer {background:black;padding:20px;text-align:center;}
+.aiBtn {position:fixed;bottom:90px;right:20px;background:gold;padding:15px;border-radius:50%;}
+#aiBox {display:none;position:fixed;bottom:150px;right:20px;background:#111;padding:10px;}
 
 .whatsapp {position:fixed;bottom:20px;left:20px;}
-
-.aiBtn {
-position:fixed;
-bottom:90px; /* ABOVE TAWK */
-right:20px;
-background:gold;
-color:black;
-padding:15px;
-border-radius:50%;
-cursor:pointer;
-}
-
-#aiBox {
-position:fixed;
-bottom:150px;
-right:20px;
-background:#111;
-padding:10px;
-display:none;
-width:250px;
-}
 </style>
 </head>
 
@@ -94,184 +45,190 @@ width:250px;
 
 <div id="overlay" onclick="closeMenu()"></div>
 
-<div class="menuBtn" onclick="toggleMenu()">☰</div>
+<div class="menuBtn" onclick="openMenu()">☰</div>
 
 <header>BLESSEDREALTY™</header>
-<p class="tagline">Building Nigeria’s Future Through Smart Real Estate</p>
 
 <!-- SIDEBAR -->
 <div id="sidebar">
 
-<h2 style="color:gold;">BLESSEDREALTY™</h2>
-<hr>
+<div style="position:absolute; top:10px; right:15px; cursor:pointer;" onclick="closeMenu()">✕</div>
 
-<h3>About</h3>
-<p>Smart, luxury and high ROI real estate solutions across Nigeria.</p>
+<h2 style="color:gold;">Menu</h2>
 
+<!-- ACROPOLIS -->
 <h3>ACROPOLIS 2032</h3>
-<p>₦45B AI-powered smart building redefining urban living.</p>
+<p>
+₦45B AI-powered smart building in Uyo, Akwa Ibom featuring luxury suites,
+rooftop pool, AI systems, solar energy and advanced security.
+</p>
+
+<img src="https://raw.githubusercontent.com/BLESSEDREALTY/blessedrealty/97e0fd0b1904e8cb61adeec01de546fc94fcbd2c/image_63e3942b.png"
+style="width:100%;border-radius:10px;">
 
 <!-- INVESTOR -->
-<div class="formHeader" onclick="toggleForm('investor')">Investor Partnership</div>
+<div class="formHeader" onclick="toggleForm('investor')">Investor</div>
 <div id="investor" class="formContent">
-<input placeholder="Full Name">
-<input placeholder="Email">
-<input placeholder="Investment Amount">
-<input placeholder="Why invest with BLESSEDREALTY?">
-<input placeholder="How did you hear about us?">
-<button>Submit</button>
-<p style="font-size:12px;color:grey;">
-60/40 structure. Returns within 48 hours after revenue clearance.
-</p>
+<input id="inv_name" placeholder="Name">
+<input id="inv_email" placeholder="Email">
+<input id="inv_amount" placeholder="Amount">
+<input id="inv_reason" placeholder="Why invest?">
+<input id="inv_source" placeholder="How did you hear?">
+<p style="font-size:12px;">60/40 structure. Paid after 48hrs clearance.</p>
+<button onclick="submitInvestor()">Submit</button>
 </div>
 
 <!-- PARTNER -->
-<div class="formHeader" onclick="toggleForm('partner')">Sourcing Partner</div>
+<div class="formHeader" onclick="toggleForm('partner')">Partner</div>
 <div id="partner" class="formContent">
-<input placeholder="Name">
-<input placeholder="Phone">
-<input placeholder="Location">
-<input placeholder="Experience">
-<button>Apply</button>
-<p style="font-size:12px;color:grey;">
-Earn 16% commission (8% finder + 8% closing).
-</p>
+<input id="par_name" placeholder="Name">
+<input id="par_phone" placeholder="Phone">
+<input id="par_location" placeholder="Location">
+<input id="par_exp" placeholder="Experience">
+<p style="font-size:12px;">Earn 16% commission.</p>
+<button onclick="submitPartner()">Apply</button>
 </div>
 
 <!-- HIRING -->
-<div class="formHeader" onclick="toggleForm('hiring')">Hiring</div>
-<div id="hiring" class="formContent">
-<input placeholder="Name">
-<input placeholder="Role">
-<input placeholder="Experience">
-<button>Apply</button>
-<p style="font-size:12px;color:grey;">
-Field agents = commission only. Admin paid monthly (28th).
-</p>
+<h3>Available Roles</h3>
+<ul>
+<li onclick="showRole('admin')">Administrative Manager</li>
+<li onclick="showRole('marketing')">Marketing Executive</li>
+<li onclick="showRole('sales')">Sales Manager</li>
+<li onclick="showRole('field')">Field Agent</li>
+</ul>
+
+<div id="roleForms">
+
+<div id="admin" class="formContent">
+<input id="hire_name" placeholder="Name">
+<input id="hire_exp" placeholder="Experience">
+<button onclick="submitHiring()">Apply</button>
 </div>
 
-<!-- WHOLESALE -->
-<div class="formHeader" onclick="toggleForm('wholesale')">Wholesale Agency</div>
-<div id="wholesale" class="formContent">
-<p>Select Package:</p>
-<button>₦5,000/month</button>
-<button>₦15,000/month</button>
-<button>₦35,000/month</button>
+<div id="marketing" class="formContent">
+<input placeholder="Name"><input placeholder="Experience">
+</div>
+
+<div id="sales" class="formContent">
+<input placeholder="Name"><input placeholder="Sales record">
+</div>
+
+<div id="field" class="formContent">
+<input placeholder="Name"><input placeholder="Location">
+<p>Commission only role.</p>
+</div>
+
 </div>
 
 </div>
 
 <!-- SEARCH -->
-<div class="search-box">
-<h2>Find Properties</h2>
+<div style="padding:20px;">
+<select>
+<option>Select State</option>
+<option>Lagos</option><option>Abuja</option><option>Uyo</option>
+</select>
 
-<select><option>Location</option><option>Uyo</option><option>Lagos</option></select>
-<select><option>Power Band</option><option>A-E</option></select>
-<select><option>Price</option><option>₦1M - ₦3B</option></select>
-<select><option>Type</option><option>Residential</option></select>
+<select>
+<option>Power Band</option>
+<option>A</option><option>B</option><option>C</option>
+<option>D</option><option>E</option>
+</select>
 
+<select>
+<option>Land Type</option>
+<option>Residential</option>
+<option>Commercial</option>
+<option>Agricultural</option>
+</select>
 </div>
 
-<!-- LISTINGS -->
+<!-- CARDS -->
 <div class="cards">
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6">
-<h3>Lekki Duplex - ₦250M</h3>
+<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
+<h3>Lagos Duplex - ₦250M</h3>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be">
-<h3>Abuja Smart Home - ₦180M</h3>
+<img src="https://images.unsplash.com/photo-1599423300746-b62533397364">
+<h3>Abuja Home - ₦180M</h3>
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c">
-<h3>Ikoyi Luxury Apartment - ₦320M</h3>
 </div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6">
-<h3>Port Harcourt Duplex - ₦150M</h3>
-</div>
-
-<p style="text-align:center;color:grey;">More listings coming soon...</p>
-
-</div>
-
-<!-- ACROPOLIS -->
-<div style="padding:20px;">
-<h2 style="color:gold;">ACROPOLIS 2032</h2>
-<p style="color:grey;">
-₦45 Billion AI-powered smart building with luxury suites, rooftop amenities,
-and advanced infrastructure.
-</p>
-
-<img src="https://raw.githubusercontent.com/BLESSEDREALTY/blessedrealty/97e0fd0b1904e8cb61adeec01de546fc94fcbd2c/image_63e3942b.png"
-style="width:100%;border-radius:12px;box-shadow:0 0 20px gold;">
-</div>
-
-<footer>© 2026 BLESSEDREALTY™</footer>
-
-<!-- WHATSAPP -->
-<a class="whatsapp" href="https://wa.me/2349072978833">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="55">
-</a>
 
 <!-- AI -->
 <div class="aiBtn" onclick="toggleAI()">AI</div>
 
 <div id="aiBox">
-<input id="userInput">
+<input id="msg">
 <button onclick="reply()">Send</button>
-<p id="response"></p>
+<p id="res"></p>
 </div>
 
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/2349072978833">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="50">
+</a>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
 <script>
-function toggleMenu(){
-document.getElementById("sidebar").style.left="0";
-document.getElementById("overlay").style.display="block";
+const firebaseConfig = {
+apiKey: "AIzaSyClRKoMDve6Kd41rQvLVvQ70jxyktCXo50",
+authDomain: "blessedrealty-00001.firebaseapp.com",
+projectId: "blessedrealty-00001",
+storageBucket: "blessedrealty-00001.firebasestorage.app",
+messagingSenderId: "484588805090",
+appId: "1:484588805090:web:58647011e00daff15f77bb"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+function submitInvestor(){
+db.collection("investors").add({
+name: inv_name.value,
+email: inv_email.value,
+amount: inv_amount.value
+});
+alert("Saved");
 }
 
-function closeMenu(){
-document.getElementById("sidebar").style.left="-100%";
-document.getElementById("overlay").style.display="none";
+function submitPartner(){
+db.collection("partners").add({
+name: par_name.value,
+phone: par_phone.value
+});
+alert("Saved");
 }
 
-function toggleForm(id){
-let x=document.getElementById(id);
-x.style.display = x.style.display==="block"?"none":"block";
+function submitHiring(){
+db.collection("hiring").add({
+name: hire_name.value,
+experience: hire_exp.value
+});
+alert("Saved");
 }
 
-function toggleAI(){
-let box=document.getElementById("aiBox");
-box.style.display=box.style.display==="none"?"block":"none";
+function openMenu(){sidebar.style.left="0";overlay.style.display="block";}
+function closeMenu(){sidebar.style.left="-100%";overlay.style.display="none";}
+function toggleForm(id){let x=document.getElementById(id);x.style.display=x.style.display==="block"?"none":"block";}
+function showRole(id){
+document.querySelectorAll("#roleForms div").forEach(d=>d.style.display="none");
+document.getElementById(id).style.display="block";
 }
 
-function reply(){
-let input=document.getElementById("userInput").value.toLowerCase();
-let res="We’ll connect you.";
-
-if(input.includes("price")) res="₦1M–₦3B listings available.";
-if(input.includes("uyo")) res="Listings in Uyo available.";
-if(input.includes("acropolis")) res="₦45B flagship smart building.";
-
-document.getElementById("response").innerText=res;
-}
+function toggleAI(){aiBox.style.display=aiBox.style.display==="block"?"none":"block";}
+function reply(){res.innerText="We’ll assist you shortly";}
 </script>
 
-<!-- TAWK.TO -->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/69d4d64e9990da1c3c406a42/1jljma9qg';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
+<!-- TAWK -->
+<script src='https://embed.tawk.to/69d4d64e9990da1c3c406a42/1jljma9qg'></script>
 
 </body>
 </html>
