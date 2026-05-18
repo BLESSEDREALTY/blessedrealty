@@ -407,77 +407,95 @@ Property advertisements are reviewed before approval.
 
 <div class="filter-row">
 
-<select id="stateSelect" onchange="updateLGA()">
+<select id="stateSelect" onchange="filterProperties()">
 
-<option>Select State</option>
+<option value="all">Select State</option>
 
+<option value="abia">Abia</option>
+<option value="adamawa">Adamawa</option>
 <option value="akwaibom">Akwa Ibom</option>
-
-<option>Lagos</option>
-
-<option>Abuja</option>
-
-<option>Rivers</option>
-
-<option>Cross River</option>
-
-<option>Delta</option>
-
-<option>Enugu</option>
+<option value="anambra">Anambra</option>
+<option value="bauchi">Bauchi</option>
+<option value="bayelsa">Bayelsa</option>
+<option value="benue">Benue</option>
+<option value="borno">Borno</option>
+<option value="crossriver">Cross River</option>
+<option value="delta">Delta</option>
+<option value="ebonyi">Ebonyi</option>
+<option value="edo">Edo</option>
+<option value="ekiti">Ekiti</option>
+<option value="enugu">Enugu</option>
+<option value="gombe">Gombe</option>
+<option value="imo">Imo</option>
+<option value="jigawa">Jigawa</option>
+<option value="kaduna">Kaduna</option>
+<option value="kano">Kano</option>
+<option value="katsina">Katsina</option>
+<option value="kebbi">Kebbi</option>
+<option value="kogi">Kogi</option>
+<option value="kwara">Kwara</option>
+<option value="lagos">Lagos</option>
+<option value="nasarawa">Nasarawa</option>
+<option value="niger">Niger</option>
+<option value="ogun">Ogun</option>
+<option value="ondo">Ondo</option>
+<option value="osun">Osun</option>
+<option value="oyo">Oyo</option>
+<option value="plateau">Plateau</option>
+<option value="rivers">Rivers</option>
+<option value="sokoto">Sokoto</option>
+<option value="taraba">Taraba</option>
+<option value="yobe">Yobe</option>
+<option value="zamfara">Zamfara</option>
+<option value="fct">FCT Abuja</option>
 
 </select>
 
-<select id="lgaSelect">
+<select id="lgaSelect" onchange="filterProperties()">
 
-<option>Select Local Government Area (Optional)</option>
-
-</select>
-
-<select>
-
-<option>Power Band</option>
-
-<option>Band A</option>
-
-<option>Band B</option>
-
-<option selected>Band C</option>
-
-<option>Band D</option>
-
-<option>Band E</option>
+<option value="all">Select Local Government Area</option>
 
 </select>
 
-<select>
+<select id="typeSelect" onchange="filterProperties()">
 
-<option>Land Type</option>
+<option value="all">Land Type</option>
 
-<option selected>Mixed Use</option>
-
-<option>Residential</option>
-
-<option>Commercial</option>
-
-<option>Industrial</option>
-
-<option>Agricultural</option>
+<option value="Mixed Use">Mixed Use</option>
+<option value="Residential">Residential</option>
+<option value="Commercial">Commercial</option>
+<option value="Industrial">Industrial</option>
+<option value="Agricultural">Agricultural</option>
 
 </select>
 
 </div>
 
+</div>
+
+<!-- STATE VIEW TITLE -->
+<div id="stateTitle" style="
+padding:15px 25px;
+font-size:24px;
+font-weight:bold;
+color:gold;
+display:none;
+">
+Akwa Ibom Listings
 </div>
 
 <!-- PROPERTY LISTINGS -->
-<div class="cards">
+<div class="cards" id="propertyContainer">
 
 <!-- PROPERTY 1 -->
-<div class="card">
+<div class="card propertyCard"
+data-state="akwaibom"
+data-lga="uyo"
+data-type="Mixed Use">
 
 <video controls poster="https://images.unsplash.com/photo-1500382017468-9049fed747ef">
 
-<source src="VID-20260515-WA0009.mp4" type="video/mp4">
+<source src="VID-20260515-WA0010(2).mp4" type="video/mp4">
 
 </video>
 
@@ -487,7 +505,8 @@ Property advertisements are reviewed before approval.
 
 <p>
 600sqm mixed-use land located around Airport Road,
-Mbak Etoi, Uyo Local Government Area, Akwa Ibom State.
+Mbak Etoi, Uyo Local Government Area,
+Akwa Ibom State.
 Good road access and developing environment.
 </p>
 
@@ -497,24 +516,29 @@ Good road access and developing environment.
 
 <span>📐 600sqm</span>
 
-<span>⚡ Band C</span>
+<span>⚡ Power Status Unknown</span>
 
 </div>
 
 <div class="property-tag">Mixed Use</div>
 
-<button class="watchBtn">Available Property</button>
+<button class="watchBtn">
+Available Property
+</button>
 
 </div>
 
 </div>
 
 <!-- PROPERTY 2 -->
-<div class="card">
+<div class="card propertyCard"
+data-state="akwaibom"
+data-lga="uyo"
+data-type="Mixed Use">
 
 <video controls poster="https://images.unsplash.com/photo-1448630360428-65456885c650">
 
-<source src="VID-20260515-WA0010.mp4" type="video/mp4">
+<source src="VID-20260515-WA0000.mp4" type="video/mp4">
 
 </video>
 
@@ -524,7 +548,8 @@ Good road access and developing environment.
 
 <p>
 1000sqm strategically located along Airport Road axis,
-Mbak Etoi, Uyo Local Government Area.
+Mbak Etoi, Uyo Local Government Area,
+Akwa Ibom State.
 Suitable for residential or future commercial development.
 </p>
 
@@ -534,48 +559,192 @@ Suitable for residential or future commercial development.
 
 <span>📐 1000sqm</span>
 
-<span>⚡ Band C</span>
+<span>⚡ Power Status Unknown</span>
 
 </div>
 
 <div class="property-tag">Mixed Use</div>
 
-<button class="watchBtn">Available Property</button>
+<button class="watchBtn">
+Available Property
+</button>
 
 </div>
 
 </div>
 
-<!-- EXISTING CARDS -->
-<div class="card">
+<!-- EXISTING PROPERTY -->
+<div class="card propertyCard"
+data-state="lagos"
+data-lga="lekki"
+data-type="Residential">
 
 <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
 
 <div class="card-content">
 
-<h3>Lekki Duplex - ₦250M</h3>
+<h3>Lekki Duplex — ₦250M</h3>
 
-<p>Luxury modern duplex located in Lekki, Lagos.</p>
+<p>
+Luxury modern duplex located in Lekki, Lagos.
+Premium finishing and smart-home features.
+</p>
+
+<div class="property-meta">
+
+<span>📍 Lekki</span>
+
+<span>🏠 Residential</span>
+
+</div>
+
+<div class="property-tag">Residential</div>
 
 </div>
 
 </div>
 
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c">
-
-<div class="card-content">
-
-<h3>Abuja Smart Home - ₦180M</h3>
-
-<p>Modern smart residential property in Abuja.</p>
-
 </div>
 
-</div>
+<!-- ADD THIS SCRIPT BELOW YOUR EXISTING SCRIPTS -->
 
-</div>
+<script>
+
+const akwaIbomLGAs = [
+
+"Abak",
+"Eastern Obolo",
+"Eket",
+"Esit Eket",
+"Essien Udim",
+"Etim Ekpo",
+"Etinan",
+"Ibeno",
+"Ibesikpo Asutan",
+"Ibiono Ibom",
+"Ika",
+"Ikono",
+"Ikot Abasi",
+"Ikot Ekpene",
+"Ini",
+"Itu",
+"Mbo",
+"Mkpat Enin",
+"Nsit Atai",
+"Nsit Ibom",
+"Nsit Ubium",
+"Obot Akara",
+"Okobo",
+"Onna",
+"Oron",
+"Oruk Anam",
+"Udung Uko",
+"Ukanafun",
+"Uruan",
+"Urue Offong/Oruko",
+"Uyo"
+
+];
+
+function filterProperties(){
+
+const state =
+document.getElementById("stateSelect").value;
+
+const lga =
+document.getElementById("lgaSelect").value;
+
+const type =
+document.getElementById("typeSelect").value;
+
+const cards =
+document.querySelectorAll(".propertyCard");
+
+const title =
+document.getElementById("stateTitle");
+
+const lgaSelect =
+document.getElementById("lgaSelect");
+
+lgaSelect.innerHTML =
+'<option value="all">Select Local Government Area</option>';
+
+if(state === "akwaibom"){
+
+akwaIbomLGAs.forEach(area => {
+
+let option =
+document.createElement("option");
+
+option.value =
+area.toLowerCase();
+
+option.text =
+area;
+
+lgaSelect.appendChild(option);
+
+});
+
+title.style.display = "block";
+title.innerText = "Akwa Ibom Property Listings";
+
+}else if(state !== "all"){
+
+title.style.display = "block";
+title.innerText =
+state.charAt(0).toUpperCase() +
+state.slice(1) +
+" Property Listings";
+
+}else{
+
+title.style.display = "none";
+
+}
+
+cards.forEach(card => {
+
+const cardState =
+card.dataset.state;
+
+const cardLga =
+card.dataset.lga;
+
+const cardType =
+card.dataset.type;
+
+let show = true;
+
+if(state !== "all" &&
+cardState !== state){
+
+show = false;
+
+}
+
+if(lga !== "all" &&
+cardLga !== lga){
+
+show = false;
+
+}
+
+if(type !== "all" &&
+cardType !== type){
+
+show = false;
+
+}
+
+card.style.display =
+show ? "block" : "none";
+
+});
+
+}
+
+  </script>
 
 <!-- VISION -->
 <div class="vision-section">
