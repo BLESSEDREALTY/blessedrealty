@@ -408,37 +408,226 @@ documentation and internal review protocols.
 
 <!-- ADVERTISE PROPERTY -->
 <div class="formHeader" onclick="toggleForm('advertise')">
+<!-- ADVERTISE PROPERTY -->
+<div class="formHeader" onclick="toggleForm('advertise')">
 Advertise Your Property
 </div>
 
 <div id="advertise" class="formContent">
 
-<input placeholder="Full Name">
+<h2 style="color:gold;text-align:center;">
+Choose Advertisement Package
+</h2>
 
-<input placeholder="Phone Number">
+<!-- PACKAGE 1 -->
+<div class="packageBox">
 
-<input placeholder="Property Location">
+<div class="packageHeader" onclick="togglePackage('pkg1')">
+🏠 Ground Level
+</div>
 
-<input placeholder="Property Type">
+<div id="pkg1" class="packageContent">
 
-<select>
-<option>Promotion Package</option>
-<option>₦5,000 Basic</option>
-<option>₦15,000 Premium</option>
-<option>₦50,000 Featured</option>
-</select>
+<img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+style="width:100%;border-radius:10px;margin-bottom:10px;">
 
-<button>Submit Property</button>
+<h3 style="color:gold;">₦3,000</h3>
 
-  
-<p style="font-size:12px;color:grey;">
-Property advertisements are reviewed before approval.
+<p>
+Basic listing with title, price, location, and 3 photos.
+Live for 30 days.
+Entry tier to get your land on the site at minimal cost.
 </p>
 
-</div>
+<select onchange="showPayment(this.value,'pay1')">
+
+<option>Select Payment Method</option>
+
+<option value="mobile">Mobile Transfer</option>
+
+<option value="onsite">On-site Transfer</option>
+
+<option value="card">Bank/Card Payment</option>
+
+</select>
+
+<div id="pay1"></div>
 
 </div>
 
+</div>
+
+<!-- PACKAGE 2 -->
+<div class="packageBox">
+
+<div class="packageHeader" onclick="togglePackage('pkg2')">
+📍 Plot Rise
+</div>
+
+<div id="pkg2" class="packageContent">
+
+<img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab"
+style="width:100%;border-radius:10px;margin-bottom:10px;">
+
+<h3 style="color:gold;">₦8,000</h3>
+
+<p>
+Everything in Ground Level, plus:
+<br><br>
+
+✔ 6 photos  
+✔ Map pin location  
+✔ 1 WhatsApp business status share  
+✔ Live for 45 days
+</p>
+
+<select onchange="showPayment(this.value,'pay2')">
+
+<option>Select Payment Method</option>
+
+<option value="mobile">Mobile Transfer</option>
+
+<option value="onsite">On-site Transfer</option>
+
+<option value="card">Bank/Card Payment</option>
+
+</select>
+
+<div id="pay2"></div>
+
+</div>
+
+</div>
+
+<!-- PACKAGE 3 -->
+<div class="packageBox">
+
+<div class="packageHeader" onclick="togglePackage('pkg3')">
+🔥 Field Focus
+</div>
+
+<div id="pkg3" class="packageContent">
+
+<img src="https://images.unsplash.com/photo-1460317442991-0ec209397118"
+style="width:100%;border-radius:10px;margin-bottom:10px;">
+
+<h3 style="color:gold;">₦15,000</h3>
+
+<p>
+Everything in Plot Rise, plus:
+<br><br>
+
+✔ 10 photos  
+✔ Featured category placement for 14 days  
+✔ 2 social media shares  
+✔ Live for 60 days
+</p>
+
+<select onchange="showPayment(this.value,'pay3')">
+
+<option>Select Payment Method</option>
+
+<option value="mobile">Mobile Transfer</option>
+
+<option value="onsite">On-site Transfer</option>
+
+<option value="card">Bank/Card Payment</option>
+
+</select>
+
+<div id="pay3"></div>
+
+</div>
+
+</div>
+
+<!-- PACKAGE 4 -->
+<div class="packageBox">
+
+<div class="packageHeader" onclick="togglePackage('pkg4')">
+🚀 Estate Edge
+</div>
+
+<div id="pkg4" class="packageContent">
+
+<img src="https://images.unsplash.com/photo-1494526585095-c41746248156"
+style="width:100%;border-radius:10px;margin-bottom:10px;">
+
+<h3 style="color:gold;">₦25,000</h3>
+
+<p>
+Everything in Field Focus, plus:
+<br><br>
+
+✔ Top pinned category placement for 21 days  
+✔ Hot Listing badge  
+✔ 4 social shares  
+✔ Live for 90 days
+</p>
+
+<select onchange="showPayment(this.value,'pay4')">
+
+<option>Select Payment Method</option>
+
+<option value="mobile">Mobile Transfer</option>
+
+<option value="onsite">On-site Transfer</option>
+
+<option value="card">Bank/Card Payment</option>
+
+</select>
+
+<div id="pay4"></div>
+
+</div>
+
+</div>
+
+<!-- PACKAGE 5 -->
+<div class="packageBox">
+
+<div class="packageHeader" onclick="togglePackage('pkg5')">
+👑 Peak Property
+</div>
+
+<div id="pkg5" class="packageContent">
+
+<img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750"
+style="width:100%;border-radius:10px;margin-bottom:10px;">
+
+<h3 style="color:gold;">₦50,000</h3>
+
+<p>
+Everything in Estate Edge, plus:
+<br><br>
+
+✔ Homepage banner for 14 days  
+✔ Site-wide pin for 30 days  
+✔ 6 social shares  
+✔ Monthly email blast feature  
+✔ Live for 120 days
+</p>
+
+<select onchange="showPayment(this.value,'pay5')">
+
+<option>Select Payment Method</option>
+
+<option value="mobile">Mobile Transfer</option>
+
+<option value="onsite">On-site Transfer</option>
+
+<option value="card">Bank/Card Payment</option>
+
+</select>
+
+<div id="pay5"></div>
+
+</div>
+
+</div>
+
+</div>
+  
 <!-- SEARCH -->
 <div class="search-box">
 
