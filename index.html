@@ -837,6 +837,42 @@ Akwa Ibom State, Nigeria.
 
 <script>
 
+function togglePackage(id){
+
+let box = document.getElementById(id);
+
+box.style.display =
+box.style.display === "block"
+? "none"
+: "block";
+
+}
+
+function togglePayment(id){
+
+let pay = document.getElementById(id);
+
+pay.style.display =
+pay.style.display === "block"
+? "none"
+: "block";
+
+}
+
+function confirmPayment(){
+
+let notify = document.getElementById("paymentNotification");
+
+notify.style.display = "block";
+
+setTimeout(()=>{
+
+notify.style.display = "none";
+
+},3000);
+
+}
+  
 const firebaseConfig = {
 
 apiKey: "AIzaSyClRKoMDve6Kd41rQvLVvQ70jxyktCXo50",
