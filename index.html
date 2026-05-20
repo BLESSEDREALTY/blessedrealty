@@ -5,54 +5,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BLESSEDREALTY</title>
 
-<!-- GOOGLE ANALYTICS -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-W4G2MCWP04"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-W4G2MCWP04');
-</script>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
+*{
+box-sizing:border-box;
+}
+
 body{
 margin:0;
-font-family:Poppins;
+font-family:Poppins,sans-serif;
 background:#0a0a0a;
 color:white;
 }
 
 header{
-background:black;
-padding:15px;
+background:#000;
+padding:18px;
 text-align:center;
 color:gold;
-font-size:24px;
+font-size:28px;
+font-weight:700;
 }
 
 .tagline{
 text-align:center;
-color:grey;
-margin-top:-10px;
+color:#aaa;
+margin:10px 20px 20px;
+font-size:14px;
 }
 
 .menuBtn{
-position:absolute;
+position:fixed;
 left:15px;
 top:15px;
-font-size:26px;
+font-size:28px;
 cursor:pointer;
 z-index:1001;
+color:gold;
 }
 
 #overlay{
 position:fixed;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.6);
+inset:0;
+background:rgba(0,0,0,0.7);
 display:none;
 z-index:999;
 }
@@ -61,53 +58,57 @@ z-index:999;
 position:fixed;
 left:-100%;
 top:0;
-width:300px;
+width:320px;
 height:100%;
 background:#111;
 padding:20px;
 transition:0.3s;
 overflow-y:auto;
 z-index:1000;
-padding-bottom:120px;
 }
 
 .formHeader{
 background:#222;
-padding:10px;
+padding:14px;
 cursor:pointer;
-margin-top:10px;
-border-radius:5px;
+margin-top:12px;
+border-radius:8px;
+font-weight:600;
 }
 
 .formContent{
 display:none;
-background:#111;
-padding:10px;
+background:#151515;
+padding:15px;
 margin-top:5px;
+border-radius:8px;
 }
 
-input, select{
-width:90%;
-padding:10px;
-margin:5px 0;
+input,
+select,
+textarea{
+width:100%;
+padding:12px;
+margin:8px 0;
 border:none;
-border-radius:5px;
-background:white;
+border-radius:8px;
+font-family:Poppins;
 }
 
 button{
 background:gold;
+color:black;
 border:none;
-padding:10px;
+padding:12px;
 width:100%;
 cursor:pointer;
-border-radius:5px;
-font-weight:bold;
+border-radius:8px;
+font-weight:700;
+margin-top:10px;
 }
 
 .search-box{
-padding:30px;
-text-align:center;
+padding:30px 20px;
 background:#111;
 }
 
@@ -115,20 +116,20 @@ background:#111;
 display:flex;
 flex-direction:column;
 gap:10px;
-max-width:500px;
+max-width:700px;
 margin:auto;
 }
 
 .cards{
-display:flex;
-flex-direction:column;
+display:grid;
+grid-template-columns:1fr;
 gap:20px;
 padding:20px;
 }
 
 .card{
 background:#111;
-border-radius:12px;
+border-radius:14px;
 overflow:hidden;
 box-shadow:0 0 15px rgba(0,0,0,0.4);
 }
@@ -136,9 +137,8 @@ box-shadow:0 0 15px rgba(0,0,0,0.4);
 .card img,
 .card video{
 width:100%;
-height:230px;
+height:240px;
 object-fit:cover;
-background:black;
 }
 
 .card-content{
@@ -150,19 +150,13 @@ margin-top:0;
 color:gold;
 }
 
-.card-content p{
-color:#cfcfcf;
-font-size:14px;
-line-height:1.5;
-}
-
 .property-meta{
 display:flex;
 justify-content:space-between;
 flex-wrap:wrap;
-margin-top:10px;
+gap:10px;
 font-size:13px;
-color:#d6d6d6;
+margin-top:15px;
 }
 
 .property-tag{
@@ -178,24 +172,59 @@ margin-top:10px;
 
 .watchBtn{
 margin-top:15px;
+}
+
+.packageBox{
+background:#1b1b1b;
+padding:15px;
+border-radius:14px;
+margin-top:20px;
+}
+
+.packageHeader{
 background:gold;
 color:black;
-font-weight:bold;
+padding:15px;
+font-size:20px;
+font-weight:700;
+border-radius:10px;
+cursor:pointer;
+text-align:center;
+}
+
+.packageContent{
+display:none;
+padding-top:15px;
+}
+
+.paymentBox{
+background:#222;
+padding:15px;
+border-radius:10px;
+margin-top:15px;
+}
+
+.notice{
+position:fixed;
+top:20px;
+right:20px;
+background:green;
+padding:15px;
+border-radius:10px;
+display:none;
+z-index:5000;
+font-weight:700;
 }
 
 .vision-section{
 padding:25px;
 background:#111;
 margin:20px;
-border-radius:12px;
-}
-
-.vision-section h2{
-color:gold;
+border-radius:14px;
 }
 
 footer{
-background:black;
+background:#000;
 padding:20px;
 text-align:center;
 margin-top:30px;
@@ -226,9 +255,9 @@ position:fixed;
 bottom:150px;
 right:20px;
 background:#111;
-padding:10px;
+padding:15px;
 display:none;
-width:250px;
+width:260px;
 border-radius:10px;
 z-index:1000;
 }
@@ -236,12 +265,11 @@ z-index:1000;
 @media(min-width:768px){
 
 .filter-row{
+grid-template-columns:1fr 1fr 1fr;
 display:grid;
-grid-template-columns:1fr 1fr;
 }
 
 .cards{
-display:grid;
 grid-template-columns:1fr 1fr;
 }
 
@@ -259,14 +287,12 @@ grid-template-columns:1fr 1fr;
 <header>BLESSEDREALTY</header>
 
 <p class="tagline">
-Building Nigeria’s Future Through Smart Real Estate
+Building Nigeria's Future Through Smart Real Estate
 </p>
 
-<!-- SIDEBAR -->
 <div id="sidebar">
 
-<!-- CLOSE BUTTON -->
-<div style="position:absolute; top:10px; right:15px; font-size:22px; cursor:pointer;" onclick="closeMenu()">✕</div>
+<div style="position:absolute;top:10px;right:15px;font-size:24px;cursor:pointer;" onclick="closeMenu()">✕</div>
 
 <h2 style="color:gold;">BLESSEDREALTY</h2>
 
@@ -276,139 +302,47 @@ Building Nigeria’s Future Through Smart Real Estate
 
 <p>
 Smart, luxury and high ROI real estate solutions across Nigeria.
-Focused on property development, investment partnerships,
-land acquisition, infrastructure growth and futuristic smart projects.
 </p>
 
-<h3>ACROPOLIS 2032</h3>
-
-<p>
-ACROPOLIS is a proposed ₦45 Billion AI-powered smart infrastructure project
-to be developed in Uyo, Akwa Ibom State, Nigeria.
-The project aims to redefine futuristic African architecture through
-technology, sustainability, commerce, hospitality and smart living.
-</p>
-
-<img src="https://raw.githubusercontent.com/BLESSEDREALTY/blessedrealty/97e0fd0b1904e8cb61adeec01de546fc94fcbd2c/image_63e3942b.png"
-style="width:100%;border-radius:10px;">
-
-<!-- INVESTOR -->
 <div class="formHeader" onclick="toggleForm('investor')">
 Investor Partnership
 </div>
 
 <div id="investor" class="formContent">
-
 <input id="inv_name" placeholder="Full Name">
-
 <input id="inv_email" placeholder="Email">
-
 <input id="inv_amount" placeholder="Investment Amount">
-
-<input id="inv_reason" placeholder="Why invest with BLESSEDREALTY?">
-
-<input id="inv_source" placeholder="How did you hear about us?">
-
 <button onclick="submitInvestor()">Submit</button>
-
 </div>
 
-<!-- PARTNER -->
 <div class="formHeader" onclick="toggleForm('partner')">
 Sourcing Partner
 </div>
 
 <div id="partner" class="formContent">
-
 <input id="par_name" placeholder="Name">
-
 <input id="par_phone" placeholder="Phone">
-
 <input id="par_location" placeholder="Location">
-
-<input id="par_exp" placeholder="Experience">
-
 <button onclick="submitPartner()">Apply</button>
-
-<p style="font-size:12px;color:grey;">
-16% total structure (8% sourcing + 8% closing commission).
-</p>
-
 </div>
 
-<!-- HIRING -->
 <div class="formHeader" onclick="toggleForm('hiring')">
 Hiring
 </div>
 
 <div id="hiring" class="formContent">
-
-<div class="bodyHeader" onclick="toggleForm('hiring')">
-What We Offer:
-</div>
-  <p style="font-size:14px;color:grey;">
-  • Workers welfare.
-• Training.
-• Basic Allowances in addition to salaries.
-• Flexible work.
-  </p>
-
-<div class="bodyHeader" onclick="toggleForm('hiring')">
-Requirements:
-  </div>
-  <p style="font-size:14px;color:grey;">
-  • Minimum 1 year of work experience.
-• Must be technologically inclined and posses a working smartphone and laptop.
-• Must have a clean national record.
-  </p>
-
-<div class="bodyHeader" onclick="toggleForm('hiring')">
-Company's Values:
-</div>
-  <p style="font-size:14px;color:grey;">
-  • Honesty, integrity, and commitment to work.
-  • Respect for ALL clients (buyers and owners). 
-  • ...
-  </p>
-   
 <input id="hire_name" placeholder="Full Name">
-
 <select id="hire_role">
 <option>Select Role</option>
 <option>Legal Advisor</option>
 <option>Field Agent</option>
 <option>Sales Executive</option>
 <option>Architect</option>
-<option>Social Media Manager</option>
-<option>Customer Care Representative</option>
-<option>Admin Staff</option>
 <option>Surveyor</option>
 </select>
-
-<input id="hire_exp" placeholder="Email Address">
-
-<input id="hire_exp" placeholder="Phone Number">
-
-<input id="hire_exp" placeholder="Years of Experience">
-  
-<input id="hire_exp" placeholder="Location">
-
-<input id="hire_exp" placeholder="Resumé/CV(Curriculum Vitae)">
-
-<input id="hire_exp" placeholder="Why Do You Want to Join BLESSEDREALTY">
-  
 <button onclick="submitHiring()">Apply</button>
-
-<p style="font-size:12px;color:grey;">
-All applications are subject to company verification,
-documentation and internal review protocols.
-</p>
-
 </div>
 
-<!-- ADVERTISE PROPERTY -->
-<div class="formHeader" onclick="toggleForm('advertise')">
-<!-- ADVERTISE PROPERTY -->
 <div class="formHeader" onclick="toggleForm('advertise')">
 Advertise Your Property
 </div>
@@ -419,855 +353,272 @@ Advertise Your Property
 Choose Advertisement Package
 </h2>
 
-<!-- PACKAGE 1 -->
 <div class="packageBox">
-
-<div class="packageHeader" onclick="togglePackage('pkg1')">
-🏠 Ground Level
-</div>
-
+<div class="packageHeader" onclick="togglePackage('pkg1')">🏠 Ground Level</div>
 <div id="pkg1" class="packageContent">
-
-<img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
-style="width:100%;border-radius:10px;margin-bottom:10px;">
-
+<img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85" style="width:100%;border-radius:10px;">
 <h3 style="color:gold;">₦3,000</h3>
-
-<p>
-Basic listing with title, price, location, and 3 photos.
-Live for 30 days.
-Entry tier to get your land on the site at minimal cost.
-</p>
-
+<p>3 photos • 30 days listing duration.</p>
 <select onchange="showPayment(this.value,'pay1')">
-
 <option>Select Payment Method</option>
-
 <option value="mobile">Mobile Transfer</option>
-
 <option value="onsite">On-site Transfer</option>
-
 <option value="card">Bank/Card Payment</option>
-
 </select>
-
 <div id="pay1"></div>
-
+</div>
 </div>
 
-</div>
-
-<!-- PACKAGE 2 -->
 <div class="packageBox">
-
-<div class="packageHeader" onclick="togglePackage('pkg2')">
-📍 Plot Rise
-</div>
-
+<div class="packageHeader" onclick="togglePackage('pkg2')">📍 Plot Rise</div>
 <div id="pkg2" class="packageContent">
-
-<img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab"
-style="width:100%;border-radius:10px;margin-bottom:10px;">
-
+<img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab" style="width:100%;border-radius:10px;">
 <h3 style="color:gold;">₦8,000</h3>
-
-<p>
-Everything in Ground Level, plus:
-<br><br>
-
-✔ 6 photos  
-✔ Map pin location  
-✔ 1 WhatsApp business status share  
-✔ Live for 45 days
-</p>
-
+<p>6 photos • Map pin • WhatsApp share • 45 days.</p>
 <select onchange="showPayment(this.value,'pay2')">
-
 <option>Select Payment Method</option>
-
 <option value="mobile">Mobile Transfer</option>
-
 <option value="onsite">On-site Transfer</option>
-
 <option value="card">Bank/Card Payment</option>
-
 </select>
-
 <div id="pay2"></div>
-
 </div>
-
-</div>
-
-<!-- PACKAGE 3 -->
-<div class="packageBox">
-
-<div class="packageHeader" onclick="togglePackage('pkg3')">
-🔥 Field Focus
-</div>
-
-<div id="pkg3" class="packageContent">
-
-<img src="https://images.unsplash.com/photo-1460317442991-0ec209397118"
-style="width:100%;border-radius:10px;margin-bottom:10px;">
-
-<h3 style="color:gold;">₦15,000</h3>
-
-<p>
-Everything in Plot Rise, plus:
-<br><br>
-
-✔ 10 photos  
-✔ Featured category placement for 14 days  
-✔ 2 social media shares  
-✔ Live for 60 days
-</p>
-
-<select onchange="showPayment(this.value,'pay3')">
-
-<option>Select Payment Method</option>
-
-<option value="mobile">Mobile Transfer</option>
-
-<option value="onsite">On-site Transfer</option>
-
-<option value="card">Bank/Card Payment</option>
-
-</select>
-
-<div id="pay3"></div>
-
-</div>
-
-</div>
-
-<!-- PACKAGE 4 -->
-<div class="packageBox">
-
-<div class="packageHeader" onclick="togglePackage('pkg4')">
-🚀 Estate Edge
-</div>
-
-<div id="pkg4" class="packageContent">
-
-<img src="https://images.unsplash.com/photo-1494526585095-c41746248156"
-style="width:100%;border-radius:10px;margin-bottom:10px;">
-
-<h3 style="color:gold;">₦25,000</h3>
-
-<p>
-Everything in Field Focus, plus:
-<br><br>
-
-✔ Top pinned category placement for 21 days  
-✔ Hot Listing badge  
-✔ 4 social shares  
-✔ Live for 90 days
-</p>
-
-<select onchange="showPayment(this.value,'pay4')">
-
-<option>Select Payment Method</option>
-
-<option value="mobile">Mobile Transfer</option>
-
-<option value="onsite">On-site Transfer</option>
-
-<option value="card">Bank/Card Payment</option>
-
-</select>
-
-<div id="pay4"></div>
-
-</div>
-
-</div>
-
-<!-- PACKAGE 5 -->
-<div class="packageBox">
-
-<div class="packageHeader" onclick="togglePackage('pkg5')">
-👑 Peak Property
-</div>
-
-<div id="pkg5" class="packageContent">
-
-<img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750"
-style="width:100%;border-radius:10px;margin-bottom:10px;">
-
-<h3 style="color:gold;">₦50,000</h3>
-
-<p>
-Everything in Estate Edge, plus:
-<br><br>
-
-✔ Homepage banner for 14 days  
-✔ Site-wide pin for 30 days  
-✔ 6 social shares  
-✔ Monthly email blast feature  
-✔ Live for 120 days
-</p>
-
-<select onchange="showPayment(this.value,'pay5')">
-
-<option>Select Payment Method</option>
-
-<option value="mobile">Mobile Transfer</option>
-
-<option value="onsite">On-site Transfer</option>
-
-<option value="card">Bank/Card Payment</option>
-
-</select>
-
-<div id="pay5"></div>
-
 </div>
 
 </div>
 
 </div>
-  
-<!-- SEARCH -->
+
 <div class="search-box">
-
-<h2>Find Properties</h2>
+<h2 style="text-align:center;">Find Properties</h2>
 
 <div class="filter-row">
 
 <select id="stateSelect" onchange="filterProperties()">
-
 <option value="all">Select State</option>
-
-<option value="abia">Abia</option>
-<option value="adamawa">Adamawa</option>
 <option value="akwaibom">Akwa Ibom</option>
-<option value="anambra">Anambra</option>
-<option value="bauchi">Bauchi</option>
-<option value="bayelsa">Bayelsa</option>
-<option value="benue">Benue</option>
-<option value="borno">Borno</option>
-<option value="crossriver">Cross River</option>
-<option value="delta">Delta</option>
-<option value="ebonyi">Ebonyi</option>
-<option value="edo">Edo</option>
-<option value="ekiti">Ekiti</option>
-<option value="enugu">Enugu</option>
-<option value="gombe">Gombe</option>
-<option value="imo">Imo</option>
-<option value="jigawa">Jigawa</option>
-<option value="kaduna">Kaduna</option>
-<option value="kano">Kano</option>
-<option value="katsina">Katsina</option>
-<option value="kebbi">Kebbi</option>
-<option value="kogi">Kogi</option>
-<option value="kwara">Kwara</option>
 <option value="lagos">Lagos</option>
-<option value="nasarawa">Nasarawa</option>
-<option value="niger">Niger</option>
-<option value="ogun">Ogun</option>
-<option value="ondo">Ondo</option>
-<option value="osun">Osun</option>
-<option value="oyo">Oyo</option>
-<option value="plateau">Plateau</option>
 <option value="rivers">Rivers</option>
-<option value="sokoto">Sokoto</option>
-<option value="taraba">Taraba</option>
-<option value="yobe">Yobe</option>
-<option value="zamfara">Zamfara</option>
-<option value="fct">FCT Abuja</option>
-
 </select>
 
 <select id="lgaSelect" onchange="filterProperties()">
-
 <option value="all">Select Local Government Area</option>
-
 </select>
 
 <select id="typeSelect" onchange="filterProperties()">
-
 <option value="all">Land Type</option>
-
 <option value="Mixed Use">Mixed Use</option>
 <option value="Residential">Residential</option>
-<option value="Commercial">Commercial</option>
-<option value="Industrial">Industrial</option>
-<option value="Agricultural">Agricultural</option>
-
 </select>
 
 </div>
-
 </div>
 
-<!-- STATE VIEW TITLE -->
-<div id="stateTitle" style="
-padding:15px 25px;
-font-size:24px;
-font-weight:bold;
-color:gold;
-display:none;
-">
-Akwa Ibom Listings
-</div>
+<div id="stateTitle" style="padding:15px 25px;font-size:24px;font-weight:bold;color:gold;display:none;"></div>
 
-<!-- PROPERTY LISTINGS -->
-<div class="cards" id="propertyContainer">
+<div class="cards">
 
-<!-- PROPERTY 1 -->
-<div class="card propertyCard"
-data-state="akwaibom"
-data-lga="uyo"
-data-type="Mixed Use">
-
-<video controls poster="https://images.unsplash.com/photo-1500382017468-9049fed747ef">
-
+<div class="card propertyCard" data-state="akwaibom" data-lga="uyo" data-type="Mixed Use">
+<video controls>
 <source src="VID-20260515-WA0010.mp4" type="video/mp4">
-
 </video>
-
 <div class="card-content">
-
 <h3>Mbak Etoi Land — ₦8.5M</h3>
-
-<p>
-600sqm mixed-use land located around Airport Road,
-Mbak Etoi, Uyo Local Government Area,
-Akwa Ibom State.
-Good road access and developing environment.
-</p>
-
+<p>600sqm mixed-use land around Airport Road, Uyo.</p>
 <div class="property-meta">
-
-<span>📍 Uyo LGA</span>
-
+<span>📍 Uyo</span>
 <span>📐 600sqm</span>
-
-<span>⚡ Power Status Unknown</span>
-
 </div>
-
 <div class="property-tag">Mixed Use</div>
-
-<button class="watchBtn">
-Available Property
-</button>
-
+<button class="watchBtn">Available Property</button>
+</div>
 </div>
 
-</div>
-
-<!-- PROPERTY 2 -->
-<div class="card propertyCard"
-data-state="akwaibom"
-data-lga="uyo"
-data-type="Mixed Use">
-
-<video controls poster="https://images.unsplash.com/photo-1448630360428-65456885c650">
-
-<source src="VID-20260515-WA0000.mp4" type="video/mp4">
-
-</video>
-
-<div class="card-content">
-
-<h3>Mbak Etoi Premium Land — ₦10.2M</h3>
-
-<p>
-1000sqm strategically located along Airport Road axis,
-Mbak Etoi, Uyo Local Government Area,
-Akwa Ibom State.
-Suitable for residential or future commercial development.
-</p>
-
-<div class="property-meta">
-
-<span>📍 Uyo LGA</span>
-
-<span>📐 1000sqm</span>
-
-<span>⚡ Power Status Unknown</span>
-
-</div>
-
-<div class="property-tag">Mixed Use</div>
-
-<button class="watchBtn">
-Available Property
-</button>
-
-</div>
-
-</div>
-
-<!-- EXISTING PROPERTY -->
-<div class="card propertyCard"
-data-state="lagos"
-data-lga="lekki"
-data-type="Residential">
-
+<div class="card propertyCard" data-state="lagos" data-lga="lekki" data-type="Residential">
 <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
-
 <div class="card-content">
-
 <h3>Lekki Duplex — ₦250M</h3>
-
-<p>
-Luxury modern duplex located in Lekki, Lagos.
-Premium finishing and smart-home features.
-</p>
-
+<p>Luxury duplex with premium finishing and smart-home features.</p>
 <div class="property-meta">
-
 <span>📍 Lekki</span>
-
 <span>🏠 Residential</span>
-
 </div>
-
 <div class="property-tag">Residential</div>
-
+</div>
 </div>
 
 </div>
 
-</div>
-
-<!-- ADD THIS SCRIPT BELOW YOUR EXISTING SCRIPTS -->
-
-<script>
-
-const akwaIbomLGAs = [
-
-"Abak",
-"Eastern Obolo",
-"Eket",
-"Esit Eket",
-"Essien Udim",
-"Etim Ekpo",
-"Etinan",
-"Ibeno",
-"Ibesikpo Asutan",
-"Ibiono Ibom",
-"Ika",
-"Ikono",
-"Ikot Abasi",
-"Ikot Ekpene",
-"Ini",
-"Itu",
-"Mbo",
-"Mkpat Enin",
-"Nsit Atai",
-"Nsit Ibom",
-"Nsit Ubium",
-"Obot Akara",
-"Okobo",
-"Onna",
-"Oron",
-"Oruk Anam",
-"Udung Uko",
-"Ukanafun",
-"Uruan",
-"Urue Offong/Oruko",
-"Uyo"
-
-];
-
-function filterProperties(){
-
-const state =
-document.getElementById("stateSelect").value;
-
-const lga =
-document.getElementById("lgaSelect").value;
-
-const type =
-document.getElementById("typeSelect").value;
-
-const cards =
-document.querySelectorAll(".propertyCard");
-
-const title =
-document.getElementById("stateTitle");
-
-const lgaSelect =
-document.getElementById("lgaSelect");
-
-lgaSelect.innerHTML =
-'<option value="all">Select Local Government Area</option>';
-
-if(state === "akwaibom"){
-
-akwaIbomLGAs.forEach(area => {
-
-let option =
-document.createElement("option");
-
-option.value =
-area.toLowerCase();
-
-option.text =
-area;
-
-lgaSelect.appendChild(option);
-
-});
-
-title.style.display = "block";
-title.innerText = "Akwa Ibom Property Listings";
-
-}else if(state !== "all"){
-
-title.style.display = "block";
-title.innerText =
-state.charAt(0).toUpperCase() +
-state.slice(1) +
-" Property Listings";
-
-}else{
-
-title.style.display = "none";
-
-}
-
-cards.forEach(card => {
-
-const cardState =
-card.dataset.state;
-
-const cardLga =
-card.dataset.lga;
-
-const cardType =
-card.dataset.type;
-
-let show = true;
-
-if(state !== "all" &&
-cardState !== state){
-
-show = false;
-
-}
-
-if(lga !== "all" &&
-cardLga !== lga){
-
-show = false;
-
-}
-
-if(type !== "all" &&
-cardType !== type){
-
-show = false;
-
-}
-
-card.style.display =
-show ? "block" : "none";
-
-});
-
-}
-
-  </script>
-
-<!-- VISION -->
 <div class="vision-section">
-
-<h2>Our Vision</h2>
-
+<h2 style="color:gold;">Our Vision</h2>
 <p>
-BLESSEDREALTY™ aims to transform the future of African real estate
-through smart infrastructure, strategic land acquisition,
-technology-driven housing systems and visionary developments.
+BLESSEDREALTY aims to transform African real estate through smart infrastructure and futuristic developments.
 </p>
-
-<p>
-The long-term vision includes the establishment of ACROPOLIS,
-a futuristic smart-city inspired infrastructure project in Uyo,
-Akwa Ibom State, Nigeria.
-</p>
-
 </div>
 
 <footer>
 © 2026 BLESSEDREALTY™
 </footer>
 
-<!-- WHATSAPP -->
 <a class="whatsapp" href="https://wa.me/2349072978833">
-
 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="55">
-
 </a>
 
-<!-- AI -->
 <div class="aiBtn" onclick="toggleAI()">AI</div>
 
 <div id="aiBox">
-
-<input id="userInput">
-
+<input id="userInput" placeholder="Ask BLESSEDREALTY AI">
 <button onclick="reply()">Send</button>
-
 <p id="response"></p>
-
 </div>
 
-<!-- FIREBASE -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics-compat.js"></script>
+<div id="paymentNotification" class="notice">
+Payment Confirmed Successfully.
+</div>
 
 <script>
 
-function togglePackage(id){
-
-let box = document.getElementById(id);
-
-box.style.display =
-box.style.display === "block"
-? "none"
-: "block";
-
-}
-
-function togglePayment(id){
-
-let pay = document.getElementById(id);
-
-pay.style.display =
-pay.style.display === "block"
-? "none"
-: "block";
-
-}
-
-function confirmPayment(){
-
-let notify = document.getElementById("paymentNotification");
-
-notify.style.display = "block";
-
-setTimeout(()=>{
-
-notify.style.display = "none";
-
-},3000);
-
-}
-  
-const firebaseConfig = {
-
-apiKey: "AIzaSyClRKoMDve6Kd41rQvLVvQ70jxyktCXo50",
-
-authDomain: "blessedrealty-00001.firebaseapp.com",
-
-projectId: "blessedrealty-00001",
-
-storageBucket: "blessedrealty-00001.firebasestorage.app",
-
-messagingSenderId: "484588805090",
-
-appId: "1:484588805090:web:58647011e00daff15f77bb",
-
-measurementId: "G-W4G2MCWP04"
-
-};
-
-firebase.initializeApp(firebaseConfig);
-
-firebase.analytics();
-
-const db = firebase.firestore();
-
-function submitInvestor(){
-
-db.collection("investors").add({
-
-name: inv_name.value,
-
-email: inv_email.value,
-
-amount: inv_amount.value
-
-});
-
-alert("Investor submitted");
-
-}
-
-function submitPartner(){
-
-db.collection("partners").add({
-
-name: par_name.value,
-
-phone: par_phone.value,
-
-location: par_location.value
-
-});
-
-alert("Partner submitted");
-
-}
-
-function submitHiring(){
-
-db.collection("hiring").add({
-
-name: hire_name.value,
-
-role: hire_role.value,
-
-experience: hire_exp.value
-
-});
-
-alert("Application submitted");
-
-}
-
 function toggleMenu(){
-
-sidebar.style.left="0";
-
-overlay.style.display="block";
-
+document.getElementById('sidebar').style.left='0';
+document.getElementById('overlay').style.display='block';
 }
 
 function closeMenu(){
-
-sidebar.style.left="-100%";
-
-overlay.style.display="none";
-
+document.getElementById('sidebar').style.left='-100%';
+document.getElementById('overlay').style.display='none';
 }
 
 function toggleForm(id){
+const x=document.getElementById(id);
+x.style.display=x.style.display==='block'?'none':'block';
+}
 
-let x=document.getElementById(id);
-
-x.style.display = x.style.display==="block"?"none":"block";
-
+function togglePackage(id){
+const x=document.getElementById(id);
+x.style.display=x.style.display==='block'?'none':'block';
 }
 
 function toggleAI(){
-
-aiBox.style.display=aiBox.style.display==="none"?"block":"none";
-
+const x=document.getElementById('aiBox');
+x.style.display=x.style.display==='block'?'none':'block';
 }
 
 function reply(){
+const input=document.getElementById('userInput').value.toLowerCase();
+let res='We will respond shortly.';
 
-let input=userInput.value.toLowerCase();
-
-let res="We’ll connect you.";
-
-if(input.includes("price"))
-res="₦1M–₦3B listings available.";
-
-if(input.includes("uyo"))
-res="Listings in Uyo available.";
-
-if(input.includes("acropolis"))
-res="₦45B flagship smart building.";
-
-response.innerText=res;
-
+if(input.includes('uyo')){
+res='Listings in Uyo are available.';
 }
 
-function updateLGA(){
+if(input.includes('acropolis')){
+res='ACROPOLIS is our proposed ₦45B smart-city project.';
+}
 
-const state = document.getElementById("stateSelect").value;
+document.getElementById('response').innerText=res;
+}
 
-const lga = document.getElementById("lgaSelect");
+function showPayment(type,target){
 
-lga.innerHTML = "<option>Select Local Government Area (Optional)</option>";
+let html='';
 
-if(state === "akwaibom"){
+if(type==='mobile'){
+html=`
+<div class="paymentBox">
+<h3>Mobile Transfer</h3>
+<p>
+Bank Name: YOUR BANK NAME<br>
+Account Name: YOUR ACCOUNT NAME<br>
+Account Number: YOUR ACCOUNT NUMBER
+</p>
+<button onclick="confirmPayment()">I Have Paid</button>
+</div>`;
+}
 
-const akwaIbomLGAs = [
+if(type==='onsite'){
+html=`
+<div class="paymentBox">
+<h3>On-site Transfer</h3>
+<p>Visit our office for payment verification.</p>
+<button onclick="confirmPayment()">Payment Confirmed</button>
+</div>`;
+}
 
-"Uyo",
-"Itu",
-"Ikot Ekpene",
-"Abak",
-"Eket",
-"Etinan",
-"Ibesikpo Asutan",
-"Ibiono Ibom",
-"Ikono",
-"Ikot Abasi",
-"Ini",
-"Nsit Atai",
-"Nsit Ibom",
-"Nsit Ubium",
-"Obot Akara",
-"Okobo",
-"Onna",
-"Oron",
-"Udung Uko",
-"Ukanafun",
-"Uruan",
-"Urue Offong",
-"Oruk Anam",
-"Essien Udim",
-"Mbo",
-"Eastern Obolo",
-"Esit Eket",
-"Mkpat Enin",
-"Etim Ekpo",
-"Ibeno"
+if(type==='card'){
+html=`
+<div class="paymentBox">
+<h3>Bank/Card Payment</h3>
+<p>Payment gateway coming soon.</p>
+<button onclick="confirmPayment()">Continue</button>
+</div>`;
+}
 
-];
+document.getElementById(target).innerHTML=html;
+}
 
-akwaIbomLGAs.forEach(area => {
+function confirmPayment(){
+const note=document.getElementById('paymentNotification');
+note.style.display='block';
+setTimeout(()=>{
+note.style.display='none';
+},3000);
+}
 
-const option = document.createElement("option");
+const akwaIbomLGAs=['uyo','abak','eket','itu'];
 
-option.text = area;
+function filterProperties(){
 
-lga.add(option);
+const state=document.getElementById('stateSelect').value;
+const lga=document.getElementById('lgaSelect').value;
+const type=document.getElementById('typeSelect').value;
+const cards=document.querySelectorAll('.propertyCard');
+const title=document.getElementById('stateTitle');
+
+cards.forEach(card=>{
+
+const cardState=card.dataset.state;
+const cardLga=card.dataset.lga;
+const cardType=card.dataset.type;
+
+let show=true;
+
+if(state!=='all' && cardState!==state){
+show=false;
+}
+
+if(lga!=='all' && cardLga!==lga){
+show=false;
+}
+
+if(type!=='all' && cardType!==type){
+show=false;
+}
+
+card.style.display=show?'block':'none';
 
 });
 
+if(state==='all'){
+title.style.display='none';
+}else{
+title.style.display='block';
+title.innerText=state.toUpperCase()+' Property Listings';
+}
 }
 
+function submitInvestor(){
+alert('Investor form submitted successfully');
 }
 
-</script>
+function submitPartner(){
+alert('Partner application submitted');
+}
 
-<!-- TAWK -->
-<script type="text/javascript">
-
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-
-(function(){
-
-var s1=document.createElement("script"),
-
-s0=document.getElementsByTagName("script")[0];
-
-s1.async=true;
-
-s1.src='https://embed.tawk.to/69d4d64e9990da1c3c406a42/1jljma9qg';
-
-s1.charset='UTF-8';
-
-s1.setAttribute('crossorigin','*');
-
-s0.parentNode.insertBefore(s1,s0);
-
-})();
+function submitHiring(){
+alert('Hiring application submitted');
+}
 
 </script>
 
 </body>
-  </html>
+</html>
