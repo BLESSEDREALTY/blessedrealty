@@ -139,10 +139,6 @@ res = "₦45B flagship smart infrastructure project.";
 
 response.innerText = res;
 
-}
-document.getElementById('response').innerText = res;
-}
-
 function filterProperties(){
 const state = document.getElementById('stateSelect').value;
 const lga = document.getElementById('lgaSelect').value;
