@@ -117,14 +117,29 @@ function reply(){
 let input = document.getElementById('userInput').value.toLowerCase();
 let res = 'BLESSEDREALTY AI is active.';
 
-if(input.includes('uyo')){
-res = 'Listings in Uyo are available.';
+function reply(){
+
+let input =
+document.getElementById("userInput")
+.value.toLowerCase();
+
+let response =
+document.getElementById("response");
+
+let res =
+"Sorry, I don't understand yet.";
+
+if(input.includes("uyo")){
+res = "Listings in Uyo available.";
 }
 
-if(input.includes('acropolis')){
-res = 'ACROPOLIS is our ₦45B smart infrastructure vision.';
+if(input.includes("acropolis")){
+res = "₦45B flagship smart infrastructure project.";
 }
 
+response.innerText = res;
+
+}
 document.getElementById('response').innerText = res;
 }
 
