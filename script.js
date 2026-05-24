@@ -1,4 +1,3 @@
-<script>
 const firebaseConfig = {
 apiKey: "AIzaSyClRKoMDve6Kd41rQvLVvQ70jxyktCXo50",
 authDomain: "blessedrealty-00001.firebaseapp.com",
@@ -189,4 +188,3 @@ s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
-</script>
