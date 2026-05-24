@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Premium | BLESSEDREALTY
+</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+
+</head>
+
+<body>
+
+<section class="paymentHero">
+
+<div class="paymentContainer">
+
+<h1 class="paymentTitle">
+🏠 Premium 
+</h1>
+
+<p class="paymentPrice">
+₦80,000
+</p>
+
+<div class="paymentBenefits">
+
+<p>✔ Basic listing</p>
+
+<p>✔ 3 property photos</p>
+
+<p>✔ Property title and location</p>
+
+<p>✔ 120 days visibility</p>
+
+<p>✔ Affordable entry package</p>
+
+</div>
+
+<select
+class="paymentSelect"
+onchange="selectPayment(this.value,80000)">
+
+<option>
+Choose Payment Method
+</option>
+
+<option value="mobile">
+Mobile Transfer
+</option>
+
+<option value="onsite">
+On-site Payment
+</option>
+
+<option value="card">
+Bank/Card Payment
+</option>
+
+</select>
+
+<div id="paymentBox" class="paymentBox">
+</div>
+
+</div>
+
+</section>
+
+<div id="paymentNotification" class="notice">
+Payment Confirmed Successfully
+</div>
+
+<script src="payment.js"></script>
+
+</body>
+</html>
