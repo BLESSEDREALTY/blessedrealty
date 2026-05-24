@@ -184,3 +184,90 @@ card.style.display = show ? 'block' : 'none';
 });
 
 }
+
+function selectPayment(method,amount){
+
+const box = document.getElementById("paymentBox");
+
+if(method === "mobile"){
+
+box.style.display = "block";
+
+box.innerHTML = `
+<h2>Mobile Transfer</h2>
+
+<p><b>Bank:</b> YOUR BANK NAME</p>
+
+<p><b>Account Number:</b> YOUR ACCOUNT NUMBER</p>
+
+<p><b>Account Name:</b> BLESSEDREALTY</p>
+
+<button class="payBtn" onclick="confirmPayment()">
+I Have Made Payment
+</button>
+`;
+
+}
+
+if(method === "onsite"){
+
+box.style.display = "block";
+
+box.innerHTML = `
+<h2>On-site Payment</h2>
+
+<input type="date" class="paymentSelect">
+
+<button class="payBtn" onclick="confirmPayment()">
+Book Appointment
+</button>
+`;
+
+}
+
+if(method === "card"){
+
+box.style.display = "block";
+
+box.innerHTML = `
+<h2>Secure Card Payment</h2>
+
+<input
+type="email"
+id="payEmail"
+placeholder="Email Address"
+class="paymentSelect">
+
+<button class="payBtn"
+onclick="payWithPaystack(${amount})">
+Continue Payment
+</button>
+`;
+
+}
+
+}
+
+function payWithPaystack(amount){
+
+let handler = PaystackPop.setup({
+
+key: 'pk_test_b31dab6228843897c55e6ca13adf5b1ce20aed12',
+
+email: document.getElementById('payEmail').value,
+
+amount: amount * 100,
+
+currency: 'NGN',
+
+callback: function(response){
+
+confirmPayment();
+
+}
+
+});
+
+handler.openIframe();
+
+}
