@@ -113,20 +113,12 @@ box.style.display = box.style.display === 'block' ? 'none' : 'block';
 }
 
 function reply(){
-let input = document.getElementById('userInput').value.toLowerCase();
-let res = 'BLESSEDREALTY AI is active.';
 
-function reply(){
+let input = document.getElementById("userInput").value.toLowerCase();
 
-let input =
-document.getElementById("userInput")
-.value.toLowerCase();
+let response = document.getElementById("response");
 
-let response =
-document.getElementById("response");
-
-let res =
-"Sorry, I don't understand yet.";
+let res = "Sorry, I don't understand yet.";
 
 if(input.includes("uyo")){
 res = "Listings in Uyo available.";
@@ -138,25 +130,41 @@ res = "₦45B flagship smart infrastructure project.";
 
 response.innerText = res;
 
+}
+
 function filterProperties(){
+
 const state = document.getElementById('stateSelect').value;
+
 const lga = document.getElementById('lgaSelect').value;
+
 const type = document.getElementById('typeSelect').value;
+
 const cards = document.querySelectorAll('.propertyCard');
+
 const lgaSelect = document.getElementById('lgaSelect');
 
-lgaSelect.innerHTML = '<option value="all">Select Local Government Area</option>';
+lgaSelect.innerHTML =
+'<option value="all">Select Local Government Area</option>';
 
 if(state === 'akwaibom'){
+
 akwaIbomLGAs.forEach(area => {
+
 const option = document.createElement('option');
+
 option.value = area.toLowerCase();
+
 option.textContent = area;
+
 lgaSelect.appendChild(option);
+
 });
+
 }
 
 cards.forEach(card => {
+
 let show = true;
 
 if(state !== 'all' && card.dataset.state !== state){
@@ -172,19 +180,7 @@ show = false;
 }
 
 card.style.display = show ? 'block' : 'none';
-});
-}
-</script>
 
-<!-- TAWK CHAT -->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement('script'),
-s0=document.getElementsByTagName('script')[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/69d4d64e9990da1c3c406a42/1jljma9qg';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
+});
+
+}
