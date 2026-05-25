@@ -271,3 +271,121 @@ confirmPayment();
 handler.openIframe();
 
 }
+
+function openPayment(type){
+
+const modal = document.getElementById("paymentModal");
+const content = document.getElementById("paymentContent");
+
+modal.style.display = "flex";
+
+if(type === "card"){
+
+content.innerHTML = `
+
+<h2 style="margin-bottom:20px;">Secure Payment</h2>
+
+<input class="payInput" type="email" id="payEmail" placeholder="Email Address">
+
+<input class="payInput" type="number" placeholder="Card Number">
+
+<input class="payInput" type="text" placeholder="Expiry Date">
+
+<input class="payInput" type="number" placeholder="CVV">
+
+<button class="payBtn" onclick="payWithPaystack()">
+Continue Payment
+</button>
+
+`;
+
+}
+
+if(type === "transfer"){
+
+content.innerHTML = `
+
+<h2>Mobile Transfer</h2>
+
+<p style="margin-top:20px;">
+Bank Name: YOUR BANK NAME
+</p>
+
+<p>
+Account Number: 0000000000
+</p>
+
+<p>
+Account Name: BLESSEDREALTY
+</p>
+
+<button class="payBtn" onclick="confirmTransfer()">
+I Have Paid
+</button>
+
+`;
+
+}
+
+if(type === "onsite"){
+
+content.innerHTML = `
+
+<h2>Book On-site Payment</h2>
+
+<input class="payInput" type="text" placeholder="Your Full Name">
+
+<input class="payInput" type="date">
+
+<button class="payBtn">
+Book Appointment
+</button>
+
+`;
+
+}
+
+}
+
+function closePayment(){
+document.getElementById("paymentModal").style.display = "none";
+}
+
+function confirmTransfer(){
+alert("Payment request submitted successfully.");
+}
+
+function payWithPaystack(){
+
+let email =
+document.getElementById("payEmail").value;
+
+let handler = PaystackPop.setup({
+
+key: "pk_test_b31dab6228843897c55e6ca13adf5b1ce20aed12",
+
+email: email,
+
+amount: 5000 * 100,
+
+currency: "NGN",
+
+callback: function(response){
+
+alert("Payment successful!");
+
+closePayment();
+
+},
+
+onClose: function(){
+
+alert("Transaction cancelled.");
+
+}
+
+});
+
+handler.openIframe();
+
+}
