@@ -128,6 +128,47 @@ Advertisement Packages
 
 </section>
 
+<section class="paymentUI">
+
+<h2>Select Payment Method</h2>
+
+<div class="paymentCards">
+
+<div class="payCard" onclick="openPayment('card')">
+<h3>Bank / Card Payment</h3>
+<p>Pay securely with ATM card, bank or transfer.</p>
+</div>
+
+<div class="payCard" onclick="openPayment('transfer')">
+<h3>Mobile Transfer</h3>
+<p>Transfer directly to BLESSEDREALTY account.</p>
+</div>
+
+<div class="payCard" onclick="openPayment('onsite')">
+<h3>On-site Payment</h3>
+<p>Visit our office and pay physically.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- PAYMENT MODAL -->
+
+<div id="paymentModal" class="paymentModal">
+
+<div class="paymentBox">
+
+<span class="closePay" onclick="closePayment()">
+×
+</span>
+
+<div id="paymentContent"></div>
+
+</div>
+
+</div>
+  
 <div class="hero">
 <h1>BLESSEDREALTY</h1>
 <p>Premium land listings, smart investments and futuristic real estate infrastructure across Nigeria.</p>
