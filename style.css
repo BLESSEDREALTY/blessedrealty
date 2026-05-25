@@ -322,19 +322,20 @@ object-fit:contain;
 
 .aiBtn{
 position:fixed;
+bottom:95px;
 right:20px;
-bottom:90px;
-background:gold;
-color:black;
 width:60px;
 height:60px;
 border-radius:50%;
+background:#FFD700;
+color:#000;
+font-weight:bold;
 display:flex;
 align-items:center;
 justify-content:center;
-font-weight:700;
-cursor:pointer;
 z-index:999;
+box-shadow:0 4px 15px rgba(0,0,0,0.3);
+cursor:pointer;
 }
 
 #aiBox{
