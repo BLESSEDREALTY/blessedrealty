@@ -4,13 +4,9 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>
-Ground Level | BLESSEDREALTY
-</title>
+<title>Ground Level | BLESSEDREALTY</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -19,6 +15,10 @@ Ground Level | BLESSEDREALTY
 </head>
 
 <body>
+
+<a href="index.html" class="backBtn">
+← Back To Home
+</a>
 
 <section class="paymentHero">
 
@@ -34,15 +34,23 @@ Ground Level | BLESSEDREALTY
 
 <div class="paymentBenefits">
 
-<p>✔ Basic listing</p>
+<h3>Package Benefits</h3>
 
-<p>✔ 3 property photos</p>
+<p>✔ Property appears on BLESSEDREALTY listings</p>
 
-<p>✔ Property title and location</p>
+<p>✔ Up to 3 Property Photos</p>
 
-<p>✔ 30 days visibility</p>
+<p>✔ Property Description</p>
 
-<p>✔ Affordable entry package</p>
+<p>✔ State & LGA Visibility</p>
+
+<p>✔ WhatsApp Contact Link</p>
+
+<p>✔ 30 Days Listing Duration</p>
+
+<p>✔ Mobile Friendly Listing Page</p>
+
+<p>✔ Search Visibility</p>
 
 </div>
 
@@ -50,7 +58,7 @@ Ground Level | BLESSEDREALTY
 class="paymentSelect"
 onchange="selectPayment(this.value,3000)">
 
-<option>
+<option value="">
 Choose Payment Method
 </option>
 
@@ -79,9 +87,7 @@ Bank/Card Payment
 Payment Confirmed Successfully
 </div>
 
-<script src="payment.js"></script>
-<script src="https://js.paystack.co/v1/inline.js"></script>
-<script src="../script.js"></script>
-  
+<script src="script.js"></script>
+
 </body>
 </html>
