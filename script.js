@@ -344,48 +344,140 @@ Book Appointment
 `;
 
 }
+function selectPayment(method, amount){
+
+const box = document.getElementById("paymentBox");
+
+box.style.display = "block";
+
+if(method === "mobile"){
+
+box.innerHTML = `
+
+<h2>Mobile Transfer</h2>
+
+<p><b>Bank:</b> YOUR BANK NAME</p>
+
+<p><b>Account Number:</b> 0000000000</p>
+
+<p><b>Account Name:</b> BLESSEDREALTY</p>
+
+<button class="payBtn" onclick="confirmPayment()">
+I Have Made Payment
+</button>
+
+`;
 
 }
 
-function closePayment(){
-document.getElementById("paymentModal").style.display = "none";
+if(method === "onsite"){
+
+box.innerHTML = `
+
+<h2>Book Appointment</h2>
+
+<input type="text"
+class="paymentSelect"
+placeholder="Full Name">
+
+<input type="date"
+class="paymentSelect">
+
+<button class="payBtn">
+Book Appointment
+</button>
+
+`;
+
 }
 
-function confirmTransfer(){
-alert("Payment request submitted successfully.");
+if(method === "card"){
+
+box.innerHTML = `
+
+<h2>Secure Payment</h2>
+
+<input
+type="email"
+id="payEmail"
+class="paymentSelect"
+placeholder="Email Address">
+
+<button
+class="payBtn"
+onclick="payWithPaystack(${amount})">
+Continue Payment
+</button>
+
+`;
+
 }
 
-function payWithPaystack(){
+}
+
+function payWithPaystack(amount){
 
 let email =
 document.getElementById("payEmail").value;
 
+if(!email){
+
+alert("Please enter email");
+
+return;
+
+}
+
 let handler = PaystackPop.setup({
 
-key: "pk_test_b31dab6228843897c55e6ca13adf5b1ce20aed12",
+key: "YOUR_LIVE_PAYSTACK_PUBLIC_KEY",
 
 email: email,
 
-amount: 5000 * 100,
+amount: amount * 100,
 
 currency: "NGN",
 
 callback: function(response){
 
-alert("Payment successful!");
+document.getElementById(
+"paymentNotification"
+).style.display="block";
 
-closePayment();
+setTimeout(()=>{
+
+document.getElementById(
+"paymentNotification"
+).style.display="none";
+
+},3000);
 
 },
 
 onClose: function(){
 
-alert("Transaction cancelled.");
+alert("Payment Cancelled");
 
 }
 
 });
 
 handler.openIframe();
+
+}
+
+function confirmPayment(){
+
+document.getElementById(
+"paymentNotification"
+).style.display="block";
+
+setTimeout(()=>{
+
+document.getElementById(
+"paymentNotification"
+).style.display="none";
+
+},3000);
 
 }
