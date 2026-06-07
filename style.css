@@ -672,4 +672,91 @@ color:gold;
 color:#333;
 }
 
+/* BACK BUTTON */
+
+.backBtn{
+position:fixed;
+top:20px;
+left:20px;
+background:black;
+color:gold;
+padding:12px 18px;
+border-radius:12px;
+text-decoration:none;
+font-weight:700;
+z-index:9999;
+}
+
+/* IMPROVED PACKAGE PAGE */
+
+.paymentBenefits h3{
+color:gold;
+margin-bottom:15px;
+}
+
+.paymentBenefits p{
+margin-bottom:12px;
+line-height:1.8;
+}
+
+/* PAYMENT BOX */
+
+.paymentBox{
+display:none;
+background:#111;
+color:white;
+margin-top:20px;
+padding:20px;
+border-radius:18px;
+}
+
+.paymentBox h2{
+color:gold;
+margin-bottom:15px;
+}
+
+/* SUCCESS MESSAGE */
+
+.notice{
+position:fixed;
+bottom:30px;
+right:30px;
+background:gold;
+color:black;
+padding:18px;
+border-radius:12px;
+display:none;
+font-weight:bold;
+z-index:99999;
+}
+
+/* PAYMENT BUTTON */
+
+.payBtn{
+background:gold;
+color:black;
+font-weight:bold;
+}
+
+/* BETTER PAYMENT PAGE */
+
+.paymentContainer{
+max-width:800px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.backBtn{
+padding:10px 15px;
+font-size:14px;
+}
+
+.paymentTitle{
+font-size:30px;
+}
+
+}
+
 </style>
